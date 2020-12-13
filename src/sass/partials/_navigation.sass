@@ -1,0 +1,188 @@
+@import ../utils/variables
+@import ../utils/mixins
+@import ../../libs/include-media/dist/include-media
+
+/* NAVIGATION
+/* nav list
+// общие стили для пунктов навигации
+.nav
+	position: relative
+
+.nav-list
+	list-style: none
+	margin: 0 0 58px
+	padding: 0
+
+	+media('<desk-hd')
+		margin: 0 0 48px
+
+	+media('<desk-lg')
+		margin: 0 0 32px
+
+	&:last-child
+		margin-bottom: 0
+
+	li
+		position: relative
+		overflow: hidden
+
+	.nav__tab
+		position: relative
+
+	a
+		display: block
+		position: relative
+		padding: 6px 0
+		color: $text-color-base
+		border-color: currentColor // для нижнего подчеркивания
+		text-decoration: none
+		+font-alt-medium
+		+font(1.8rem, round-float(24/18, 2))
+		user-select: none
+		-webkit-tap-highlight-color: transparent
+
+		// hover
+		.no-touchevents &:hover
+			color: $base-color
+
+// общие стили для подменю навигации
+.nav__drop
+	position: relative
+	display: none
+
+	.no-js &
+		display: block
+
+// стили для пунктов навигации, у которых ЕСТЬ ПОДМЕНЮ
+.nav-list li.has-drop > .nav__tab > a
+	padding-right: (round($nav-arrow-size+10))
+
+// стили для пункта навигации ТЕКУЩЕЙ страницы
+.no-touchevents
+	.nav-list li.current
+		& > a, & > .nav__tab a
+			&, &:hover
+				color: $base-color
+
+// особые стили для пунктов навигации ПЕРВОГО урованя
+.nav-list > li
+	& > a, & > .nav__tab a
+		+padding-vertical(4px)
+		+font(2.7rem, round-float(34/30, 2))
+
+// СТРЕЛКИ навигации
+.nav__angle
+	position: absolute
+	right: 0
+	top: 0
+	width: $nav-arrow-size
+	height: 100%
+	//transition:
+		property: transform, color, background-color
+		duration: $animation-speed
+	z-index: 2
+	cursor: pointer
+	display: none
+
+	// убрать подсветку при клике на тачскринах
+	.touchevents &
+		user-select: none
+		-webkit-tap-highlight-color: transparent
+
+	li.has-drop > .nav__tab > &
+		display: block
+
+	i
+		position: absolute
+		+position(50%, 50%)
+		+size(7px)
+		margin: -4px 0 0 -4px
+		+font(0, 0)
+		pointer-events: none
+		will-change: transform
+		transition:
+			property: transform
+			duration: $animation-speed
+
+		&::before, &::after
+			+pseudo()
+			+position(50%, 0)
+			height: 2px
+			width: 7px
+			backface-visibility: hidden
+			background-color: currentColor
+			//$prop: background-color, transform
+			//will-change: $prop
+			//transition:
+				property: $prop
+				duration: $animation-speed
+
+		&::before
+			transform: rotate(45deg)
+			margin: 0 0 0 -2px
+
+		&::after
+			transform: rotate(-45deg)
+			margin: 0 0 0 2px
+
+// стили стрелок навигации для разных состояний
+.nav__angle
+
+	// активное (подменю открыто)
+	li.is-open > .nav__tab & i
+		transform: rotate(0.5turn)
+
+	// ховер
+	.no-touchevents li > .nav__tab &:hover i
+		&::before, &::after
+			background-color: $base-color
+
+// особые стили для пунктов ПОДМЕНЮ
+.nav__drop
+	// особые стили для пунктов навигации ВТОРОГО урованя
+	// и ниже
+	ul
+		+padding-vertical(5px)
+
+	a
+		position: relative
+		padding-left: round(nth($nav-space, 2))
+
+		&::before
+			content: "–"
+			display: block
+			position: absolute
+			left: 0
+			top: 0.3em
+
+	.nav__drop
+		// особые стили для пунктов навигации ТРЕТЬЕГО урованя
+		// и ниже
+		li
+			padding-left: round(nth($nav-space, 2))
+
+			//a
+				font-size: 1.4rem
+				+font-normal
+
+/* nav list end
+/* NAVIGATION end
+
+
+/* temp
+
+//.nav-list
+	li
+		position: relative
+		//margin-bottom: 8px
+		+font-alt-medium
+		+font(30px, round-float(34/30, 2))
+
+		+media('<desk-hd')
+			font-size: 26px
+
+		+media('<desk-lg')
+			font-size: 24px
+
+		//&:last-child
+			margin-bottom: 0

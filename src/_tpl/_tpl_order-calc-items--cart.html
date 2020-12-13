@@ -1,0 +1,153 @@
+@@if(!context.head && !context.child && !context.removed){
+<tr class="c-tr order-calc__item-js" data-id="@@ch.Модель_@@ch.Рост_@@ch.Размер">
+}
+@@if(context.head && !context.removed){
+<tr class="c-tr c-tr--head order-calc__item-js order-calc__head-js" id="@@ch.Модель">
+}
+@@if(context.child && !context.removed){
+<tr class="c-tr c-tr--child order-calc__item-js order-calc__child-js" data-id="@@ch.Модель_@@ch.Рост_@@ch.Размер" data-group-id="@@ch.Модель">
+}
+@@if(context.removed){
+<tr class="c-tr c-tr--removed order-calc__item-js" data-id="@@ch.Модель_@@ch.Рост_@@ch.Размер">
+}
+
+	<td class="c-td c-td--caption" data-label="Наименование">
+		<div class="td__val">
+			@@if(context.head){
+			<a href="product-card.html" class="caption-for-table">
+			}
+			@@if(!context.head){
+			<div class="caption-for-table">
+			}
+				@@if(!context.head){
+				<div class="img-for-table">&nbsp;</div>
+				}
+				@@if(context.head){
+				<div class="img-for-table">
+					<img src="@@if(context.src){@@src}@@if(!context.src){img/no-img-product.png}" alt="@@title" />
+				</div>
+				}
+
+				@@if(!context.head){
+				<div class="title-for-table">...</div>
+				}
+				@@if(context.head){
+				<div class="title-for-table">
+					@@title
+				</div>
+				}
+			@@if(!context.head){
+			</div>
+			}
+			@@if(context.head){
+			</a>
+			}
+		</div>
+	</td>
+
+	<!--<div class="c-td c-td&#45;&#45;stock" data-label="Наличие">
+		<div class="c-td__val">
+			<div class="stock-tape" title="На складе осталось @@ch.Остаток"><span class="stock-tape-value" style="width: @@ch.Остаток;">@@ch.Остаток</span></div>
+		</div>
+	</div>-->
+
+	<td class="c-td c-td--model" data-label="Модель">
+		<div class="c-td__val">
+			@@if(!context.head){ ... }
+			@@if(context.head){ @@ch.Модель }
+		</div>
+	</td>
+
+	@@if(!context.removed){
+	<td class="c-td c-td--size" data-label="Размер">
+		<div class="c-td__val">
+			@@if(!context.head){ @@ch.Размер }
+			@@if(context.head){ &mdash; }
+		</div>
+	</td>
+	}
+	@@if(context.removed){
+	<td class="c-td c-td--removed-info" data-label="" colspan="7">
+		<div class="c-td__val">
+			<span class="for-desk">Данный товар удалён из каталога</span>
+			<span class="for-mob">Товар удалён</span>
+		</div>
+	</td>
+	}
+
+	@@if(!context.removed){
+	<td class="c-td c-td--height" data-label="Рост">
+		<div class="c-td__val">
+			@@if(!context.head){ @@ch.Рост }
+			@@if(context.head){ &mdash; }
+		</div>
+	</td>
+
+	<td class="c-td c-td--packs-length" data-label="Кол-во уп.">
+		<div class="c-td__val">
+			@@if(!context.head){
+			<input class="spinner spinner-js order-calc__spin-packs-js"@@if(context.max){ max="@@max"} min="0" type="number" name="value" value="@@value" data-only-number>
+			}
+			@@if(context.head){
+			<span class="order-calc__packs-in-group-js">0</span> шт.
+			}
+		</div>
+	</td>
+
+	<td class="c-td c-td--length" data-label="В уп.">
+		<div class="c-td__val">
+			@@if(!context.head){
+			<span class="order-calc__length-in-pack-js" data-length-in-pack="@@ch.Вупаковке">@@ch.Вупаковке</span> шт.
+			}
+			@@if(context.head){ &mdash; }
+		</div>
+	</td>
+
+	<td class="c-td c-td--length-total" data-label="Всего шт.">
+		<div class="c-td__val">
+			@@if(!context.head){
+			<span class="order-calc__length-sum-js">0</span> шт.
+			}
+			@@if(context.head){
+			<span class="order-calc__length-in-group-js">0</span> шт.
+			}
+		</div>
+	</td>
+
+	<td class="c-td c-td--price" data-label="Цена">
+		<div class="c-td__val">
+			@@if(!context.head){
+			<div class="order-calc__price-js" data-price="@@price.calc">@@price.view @@price.unit</div>
+			}
+			@@if(context.head){ &mdash; }
+		</div>
+	</td>
+
+	<td class="c-td c-td--price-sum" data-label="Сумма">
+		<div class="c-td__val">
+			@@if(!context.head){
+			<span class="order-calc__price-sum-js">0</span> @@price.unit
+			}
+			@@if(context.head){
+			<span class="order-calc__price-sum-in-group-js">0</span> @@price.unit
+			}
+		</div>
+	</td>
+	}
+
+	<td class="c-td c-td--del">
+		@@if(!context.head || context.removed){
+		<a href="#" class="btn-del order-calc__remove-js" title="Удалить товар из корзины">
+			@@include("includes-json/svg/icon-close.svg")
+			<span>Удалить товар из корзины</span>
+		</a>
+		}
+		@@if(context.head && !context.removed){
+		<a href="#" class="btn-del order-calc__remove-group-js" title="Удалить группу из корзины">
+			@@include("includes-json/svg/icon-close.svg")
+			<span>Удалить группу из корзины</span>
+		</a>
+		}
+	</td>
+
+</tr>

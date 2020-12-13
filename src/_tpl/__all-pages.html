@@ -1,0 +1,66 @@
+@@include('_tpl_layout_head.html', {
+	"title": "Список html-страниц",
+	"pageClass": ""
+})
+
+@@include('_tpl_PAGE_WRAP.html', {"pageWrap": "START" })
+
+<!--HEADER-->
+@@include('_tpl_layout_header.html', {
+	"currentItem": ""
+})
+<!--HEADER end-->
+<!--MAIN-->
+<div class="main">
+
+	<div class="main__holder">
+		<!--CONTENT-->
+		<div class="content-wrap">
+			<div class="content user-content">
+
+				<div class="layout-article">
+
+					<h1 style="text-align: center;">Список html-страниц</h1>
+
+					<ol>
+						<li><a href="index.html"><span>Главная</span></a></li>
+						<h4 style="margin: 3rem 0 1rem;">Страницы</h4>
+						<hr style="margin: 1rem 0;">
+						<li><a href="catalog.html"><span>Продукция</span></a></li>
+						<li><a href="product-card.html"><span>Карточка товара</span></a></li>
+						<li><a href="news.html"><span>Пресс-релизы</span></a></li>
+						<li><a href="mass-media.html"><span>СМИ о нас</span></a></li>
+						<li><a href="cabinet.html"><span>Личный кабинет</span></a></li>
+						<li><a href="cart.html"><span>Корзина</span></a></li>
+						<li><a href="contacts.html"><span>Контакты</span></a></li>
+						<li><a href="shops.html"><span>Где купить?</span></a></li>
+						<li><a href="404.html"><span>Ошибка 404</span></a></li>
+						<h4 style="margin: 3rem 0 1rem;">Шаблоны</h4>
+						<hr style="margin: 1rem 0;">
+						<li><a href="typography.html"><span>Типографика</span></a></li>
+						<li><a href="forms.html"><span>Элементы форм</span></a></li>
+						<li><a href="inner.html"><span>Layout. Внутрення тестовая.</span></a></li>
+						<h4 style="margin: 3rem 0 1rem;">Тестирование</h4>
+						<hr style="margin: 1rem 0;">
+						<li><a href="temp-ajax-order.html"><span>temp-ajax-order</span></a></li>
+					</ol>
+
+				</div>
+
+			</div>
+		</div>
+		<!--CONTENT end-->
+	</div>
+
+</div>
+<!--MAIN end-->
+
+<!--SIDEBAR-->
+@@include('_tpl_layout_sidebar.html', {
+	"currentItem": ""
+})
+<!--SIDEBAR-->
+
+@@include('_tpl_PAGE_WRAP.html', { "pageWrap": "END" })
+
+@@include('_tpl_layout_foot.html')

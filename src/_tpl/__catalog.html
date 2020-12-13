@@ -1,0 +1,139 @@
+@@include('_tpl_layout_head.html', {
+	"title": "Продукция",
+	"pageClass": "page--has-m-aside"
+})
+
+@@include('_tpl_PAGE_WRAP.html', {"pageWrap": "START" })
+
+<!--HEADER-->
+@@include('_tpl_layout_header.html', {
+	"currentItem": "Продукция"
+})
+<!--HEADER end-->
+
+<!--MAIN-->
+<div class="main">
+	<div class="main__holder">
+
+		<!--CONTENT-->
+		<div class="content-wrap">
+			<div class="content user-content">
+
+				@@include('_tpl_breadcrumbs.html', {
+					"items": ["Главная"],
+					"last": "Наша продукция"
+				})
+
+				<div class="article-entry">
+					<h1>Белье ясельное</h1>
+					<div class="article-entry__holder text-slide-js" data-btn-text-full="Текст полностью" data-btn-text-short="Свернуть">
+						<p>В каталоге ОАО «Свiтанак» представлены актуальные на сегодняшний день модели белья и верхней одежды, выпускаемой нашим предприятием, а также вся необходимая информация по каждой модели, включающая фото и номер модели, ассортиментную группу, шкалу размеров, состав, полотно и вид отделки.</p>
+					</div>
+				</div>
+				<div class="box-options">
+					<div class="box-options__label">Для удобства пользования каталог разбит на линии, а также снабжен удобным фильтром.</div>
+					<div class="box-options__content">
+						<!--departments-->
+						<ul class="dep-list dep-list--horizontal equal-height-js">
+							@@loop('_tpl_dep-items.html', [
+							{
+							"title": "",
+							"alt": "Женский трикотаж",
+							"items": ["Белье женское", "Верх женский"],
+							"img": "dep-img-01.png"
+							},
+							{
+							"title": "",
+							"alt": "Мужской трикотаж",
+							"items": ["Белье мужское", "Верх мужской"],
+							"img": "dep-img-02.png"
+							},
+							{
+							"title": "",
+							"alt": "Детский трикотаж",
+							"items": ["Белье детское", "Верх детский"],
+							"img": "dep-img-03.png"
+							},
+							{
+							"title": "",
+							"alt": "Ясельный трикотаж",
+							"items": ["Белье ясельное"],
+							"img": "dep-img-04.png"
+							}
+							])
+						</ul>
+						<!--departments end-->
+					</div>
+				</div>
+				<!--Во время подбора результатов добавляем класс js-loading на контейнер с классом p-filters-js-->
+				<div class="m-wrapper p-filters-js">
+					<div class="p-filters-tags">
+						<div class="p-filters-tags__holder">
+							<div class="p-filters-tags__frame p-filters-tags-js">
+								<!--filters tags-->
+							</div>
+						</div>
+					</div>
+					<div class="m-container">
+						<div class="m-aside m-aside-shutter-js">
+							<div class="m-aside-layout">
+								<form name="_form" action="/content/catalog/childrens/" method="get" class="js-filter-form">
+									<div class="m-aside-align">
+										<div class="m-aside-holder">
+											<!--filters-->
+											@@include('_tpl_products-filters.html')
+											<!--filters end-->
+										</div>
+									</div>
+									<div class="m-aside-footer">
+										<button class="btn-underline btn-with-icon btn-clear-filters btn-clear-filters-js" disabled>
+											@@include("includes-json/svg/icon-close.svg")
+											<span class="for-desk">Очистить фильтр</span>
+											<span class="for-mob">Очистить</span>
+										</button>
+										<a href="#" class="btn-default btn-filters-apply btn-shutter-close-js"><span>Показать</span></a>
+										<a href="#" class="btn-shutter-close btn-shutter-close-js"><i>&nbsp;</i><span>Закрыть</span></a>
+									</div>
+								</form>
+							</div>
+						</div>
+						<div class="m-content">
+							<div class="m-content__holder">
+								@@include('_tpl_products-options.html')
+								<div class="note bottom-space-lg">Цены в белорусских рублях приведены с учетом НДС, цены в других валютах – без НДС.</div>
+								<div class="p-filters-tags">
+									<div class="p-filters-tags__holder">
+										<div class="p-filters-tags__frame p-filters-tags-js">
+											<!--filters tags-->
+										</div>
+									</div>
+								</div>
+								<div class="products grid-view" data-toggle-view-panels="products">
+									<section class="products__list">
+										@@loop("_tpl_products-items.html", "includes-json/products-items.json")
+									</section>
+								</div>
+								@@include('_tpl_pagination.html')
+							</div>
+						</div>
+					</div>
+
+					<div class="loader-cover">&nbsp;</div>
+				</div>
+
+			</div>
+		</div>
+		<!--CONTENT end-->
+	</div>
+</div>
+<!--MAIN end-->
+
+<!--SIDEBAR-->
+@@include('_tpl_layout_sidebar.html', {
+	"currentItem": "Каталог"
+})
+<!--SIDEBAR-->
+
+@@include('_tpl_PAGE_WRAP.html', { "pageWrap": "END" })
+
+@@include('_tpl_layout_foot.html')

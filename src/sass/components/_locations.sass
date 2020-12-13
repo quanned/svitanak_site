@@ -1,0 +1,336 @@
+@import ../utils/variables
+@import ../utils/mixins
+@import ../../libs/include-media/dist/include-media
+
+/*shops network
+.shops
+	overflow: hidden
+	position: relative
+
+	&.no-shops-items
+		.shops-holder
+			overflow: hidden !important
+			height: 0 !important
+
+/* shops-view-switcher
+.shops-view-switcher
+	position: relative
+	+margin-horizontal(-15px)
+
+	a
+		+margin-horizontal(15px)
+		border-bottom-color: transparent
+
+		&.active-tab
+			//display: none
+			color: $base-color
+			border-color: currentColor
+			cursor: default
+
+/* shops-view-switcher end
+
+/* shops-filters
+.shops-filters
+	margin-bottom: $bottom-space--md
+
+	&:last-child
+		margin-bottom: 0
+
+	hr
+		margin-bottom: 3rem
+
+	.select
+		margin: 0
+
+		&.form-minimal
+			select, .select2-container--default .select2-selection, .select2-container--default .select2-selection .select2-selection__rendered
+				+font-bold
+				font-size: 14px
+				letter-spacing: 0.2em
+				text-transform: uppercase
+
+		&.disabled
+			&::before, &::after
+				background-color: $disabled-color
+
+		&.hide
+			display: none
+
+.shops-filters__item
+	line-height: 1
+	margin-bottom: $bottom-space
+
+	&:last-child
+		margin-bottom: 0
+
+	.radio-label, .check-label
+		margin-bottom: 0
+
+/* shops-filters end
+
+/* shops-opener
+// переключатели, когда табы трансформируются в аккордион
+.shops
+	.tab-link-js
+		display: none
+
+		+media('<tab-lg')
+			display: block
+
+/* shops-opener end
+/* shops-map
+.shops-by-map
+	height: $shops-map-height
+
+	opacity: 0
+	visibility: hidden
+
+	.no-js &
+		opacity: 1
+		visibility: visible
+
+	+media('<desk-lg')
+		height: $shops-map-height--md
+
+	// перебить стили назначенные скриптом
+	+media('<tab-lg')
+		float: none !important
+		position: relative !important
+		left: auto !important
+		top: auto !important
+		height: auto !important
+		width: auto !important
+		z-index: auto !important
+		visibility: visible !important
+		opacity: 1 !important
+		border: none
+
+.shops-map
+	position: relative
+	height: 100%
+	background: #f3f3f3
+	z-index: 1
+
+	+media('<tab-lg')
+		height: $shops-map-height--sm
+
+	+media('<mob-lg')
+		height: $shops-map-height--mob
+
+	&::before
+		$size: 50px
+		content: ""
+		display: block
+		position: absolute
+		left: 50%
+		top: 50%
+		+size($size)
+		margin: -#{round($size/2)} 0 0 -#{round($size/2)}
+		background: url(../../img/preloader.svg) 0 0 no-repeat
+		background-size: contain
+		z-index: -1
+
+/* shops-map
+
+/* shops-by-list
+/* shops-by-list layout
+.shops-by-list
+	position: relative
+	background: $bg-color
+
+	opacity: 0
+	visibility: hidden
+
+	.no-js &
+		opacity: 1
+		visibility: visible
+
+	// перебить стили назначенные скриптом
+	+media('<tab-lg')
+		float: none !important
+		position: relative !important
+		left: auto !important
+		top: auto !important
+		height: auto !important
+		width: auto !important
+		z-index: auto !important
+		visibility: visible !important
+		opacity: 1 !important
+
+.shops-by-list__frame
+	overflow: hidden
+	position: relative
+	
+	+media('<tab-lg')
+		border-bottom: 1px solid $border-color
+
+//.shops-list-js
+	display: none
+
+	&.is-show
+		display: block
+
+.shops-list
+	+margin-horizontal(-50px)
+	margin-bottom: -50px
+	+clear-spacing
+
+	+media('<desk-hd')
+		+margin-horizontal(-20px)
+		margin-bottom: -30px
+
+	+media('<tab-lg')
+		padding: 20px 0
+		margin-bottom: -20px
+
+/* shops-by-list layout end
+
+/* shops-item
+.shops-item
+	display: inline-block
+	vertical-align: top
+	width: #{round-float(100%/4, 2)}
+	padding: 0 50px
+	margin-bottom: 50px
+	background: $bg-color
+	will-change: transform
+	+font(1.6rem, round-float(30/16, 2))
+	letter-spacing: normal
+	//outline: 1px solid red
+
+	&.item-hide
+		display: none
+
+	+media('<desk-hd')
+		padding: 0 20px
+		margin-bottom: 30px
+
+	+media('<desk-lg')
+		width: #{round-float(100%/3, 2)}
+
+	+media('<desk-md')
+		width: #{round-float(100%/2, 2)}
+
+	+media('<tab-lg')
+		margin-bottom: 20px
+
+	//&.is-active
+		background: $bg-color-alt
+
+		+media('<tab-lg')
+			// на девайсах активное соостояние отключаем
+			background-color: $bg-color
+
+	&:first-child
+		border-top: none
+
+.shops-item__title
+	+font-alt-bold
+	+font(2.4rem, round-float(32/24, 2))
+	padding-bottom: 1em
+
+	+media('<tab-lg')
+		padding-bottom: 0.5em
+
+	a
+		text-decoration: none
+		color: inherit
+
+		+media('<tab-lg')
+			cursor: default
+
+		.no-touchevents &:hover
+			color: $base-color
+
+			+media('<tab-lg')
+				// на девайсах активное соостояние отключаем
+				color: inherit
+
+		.no-touchevents .is-active &, .is-active &
+			+media('>=desk-md')
+				color: inherit
+				cursor: default
+
+.shops-item__list, .shops-item__info
+	color: $text-color
+	margin-bottom: 1.5rem
+	+font(1.6rem, round-float(30/16, 2))
+
+	&:last-child
+		margin-bottom: 0
+
+.shops-item__list__item, .shops-item__info__item
+	position: relative
+	margin-bottom: 0.5em
+
+	&:last-child
+		margin-bottom: 0
+
+	b
+		+font-medium
+
+.shops-item__footer
+	$height: 24px
+	//==============
+
+	+media('<tab-lg')
+		display: none
+
+	.btn-to-map
+		display: inline-block
+		vertical-align: top
+		color: inherit
+		font-size: 1.6rem
+		line-height: $height
+		height: $height
+
+		svg
+			display: inline-block
+			vertical-align: middle
+			+size(16px)
+
+		path
+			fill: $base-color
+			
+		& > span
+			border-bottom: 1px solid #9a9a9a
+
+		//hover
+		.no-touchevents &:hover
+			color: $link-color
+
+			path
+				fill: currentColor
+
+			& > span
+				border-color: currentColor
+
+/* shops-item end
+
+// сообщение, если не найдено никаких результатов
+/* filter-no-item
+.shops .filter-no-item
+	+font-d()
+	color: $form-error-color
+
+/* filter-no-item end
+
+// визуализации процесса поиска результатов
+/* loader
+.count-loader
+	position: absolute
+	left: 0
+	top: 0
+	width: 100%
+	height: 100%
+	z-index: 1
+	background: rgba(255, 255, 255, 0.85) url(../../img/preloader.svg) no-repeat 50% 50%
+	-webkit-background-size: 30px
+	background-size: 30px
+
+.no-svg .count-loader
+	background-image: url(../../img/preloader.svg)
+
+/* loader end
+
+/*shops network end

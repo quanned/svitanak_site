@@ -1,0 +1,25 @@
+@import ../utils/variables
+@import ../utils/mixins
+@import ../../libs/include-media/dist/include-media
+
+/* lang
+.lang
+	position: relative
+	text-align: center
+
+	& > a
+		+font-d
+		padding-left: 0.2em
+		color: $text-color
+		text-decoration: none
+
+		@if $animation-use
+			transition:
+				property: color
+				duration: $animation-speed
+
+		// hover
+		&:hover
+			color: $link-color
+
+/* lang end

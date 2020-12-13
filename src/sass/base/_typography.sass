@@ -1,0 +1,973 @@
+@import ../utils/variables
+@import ../utils/mixins
+@import ../../libs/include-media/dist/include-media
+
+html
+	font-size: 62.5%
+
+	// блокировка скролла
+	&.css-scroll-fixed
+		+scroll-blocked()
+
+body
+	+font-normal
+	+font($font-size, $line-height)
+	letter-spacing: $letter-spacing
+	color: $text-color
+	background: $bg-color url(../../img/empty.png) no-repeat left top fixed
+
+	// выделение текста
+	*::selection
+		background-color: $base-color
+		color: white
+
+h1, h2, h3, h4, h5, h6
+	padding: 0
+	+font-alt-bold
+	color: $title-color
+	//margin: 0 0 $bottom-space--md
+	margin: 0 0 0.8em
+
+	&:last-child
+		margin-bottom: 0
+
+	a
+		text-decoration: none
+		color: inherit
+
+		.no-touchevents &:hover
+			color: $base-color
+			text-decoration: underline
+
+h1
+	+font($font-size-h1, $line-height-h1)
+	letter-spacing: 0.05em
+
+	+media('<desk-hd')
+		+font($font-size-h1--lg, $line-height-h1--lg)
+
+	+media('<desk-md')
+		+font($font-size-h1--md, $line-height-h1--md)
+
+	+media('<mob-lg')
+		+font($font-size-h1--sm, $line-height-h1--sm)
+
+h2
+	+font($font-size-h2, $line-height-h2)
+
+	+media('<desk-md')
+		+font($font-size-h2--md, $line-height-h2--md)
+
+	+media('<mob-lg')
+		+font($font-size-h2--sm, $line-height-h2--sm)
+
+h3
+	+font($font-size-h3, $line-height-h3)
+
+	+media('<desk-md')
+		+font($font-size-h3--md, $line-height-h3--md)
+
+	+media('<mob-lg')
+		+font($font-size-h3--sm, $line-height-h3--sm)
+
+h4
+	+font($font-size-h4, $line-height-h4)
+
+h5
+	+font($font-size-h5, $line-height-h5)
+
+h6
+	+font($font-size-h6, $line-height-h6)
+	text-transform: uppercase
+
+.#{$user-content}
+	@each $tags in h2, h3, h4, h5
+		p + #{$tags},
+		ul + #{$tags},
+		ol + #{$tags},
+		hr + #{$tags},
+		table + #{$tags},
+		.table-auto + #{$tags}
+			margin-top: 1.4em
+
+p
+	padding: 0
+	margin: 0 0 $bottom-space
+
+	.#{$user-content} > &:last-child,
+	.layout-article:last-child > &:last-child
+		margin-bottom: 0
+
+hr
+	line-height: 1px
+	height: 0
+	border: none
+	background: none
+	border-bottom: 1px solid $border-color
+	margin-bottom: $bottom-space--lg
+
+a
+	color: $link-color
+	text-decoration: underline
+	cursor: default
+	//outline: none
+
+	&:link
+		cursor: pointer
+
+	.no-touchevents &:hover
+		text-decoration: none
+
+	&[href^="tel"], .no-touchevents &[href^="tel"]:hover
+		text-decoration: none !important
+		color: inherit
+		cursor: default
+
+	&[href^="javascript:"]
+		cursor: default
+
+img
+	border: none
+	vertical-align: top
+	max-width: 100%
+
+	table &
+		max-width: none
+
+b, strong, th
+	+font-bold
+
+i, em
+	+font-italic
+
+i b, i strong, em b, em strong, b i, b em, strong i, strong em
+	+font-bold-italic
+
+.font-d
+	+display-inline-block-top
+	+font-d
+	text-decoration: none
+	color: $text-color
+
+	& > span
+		+display-inline-block-top
+		border-bottom: 2px solid $text-color
+		line-height: 28px
+
+	// hover
+	&:hover
+		color: $base-color
+
+		& > span
+			border-color: $base-color
+
+.entry-text
+	position: relative
+	margin-bottom: $bottom-space--lg
+	padding-bottom: $bottom-space--md
+	+font-alt-italic
+	+font(30px, round-float(36/30, 2))
+	text-align: center
+
+	&::after
+		$width: 100px
+
+		+pseudo()
+		+position(100%, 50%)
+		+size($width, 0)
+		margin-left: -#{round($width/2)}
+		border-top: 1px solid $text-color
+
+	&:last-child
+		margin-bottom: 0
+
+	b, strong,
+	i, em
+		+font-alt-bold
+
+.entry-img
+	position: relative
+	overflow: hidden
+	margin-bottom: $bottom-space--lg
+	height: calc(100vh - #{$header-height})
+	min-height: 400px
+
+	&::before
+		+pseudo()
+		+position(0, 0)
+		+size(100%)
+		background-color: rgba($text-color, 0.35)
+		z-index: 2
+
+	+media('<mob-md')
+		+ratio(16, 9)
+
+	img
+		position: absolute
+		left: 50%
+		top: 50%
+		max-width: 100%
+		max-height: none
+		min-width: 0
+		min-height: 0
+		text-align: left
+		width: calc(100% + 4px)
+		height: calc(100% + 4px)
+		transform: translate(-50%, -50%)
+		+object-fit(cover)
+		z-index: 1
+
+		//.no-objectfit &
+			width: auto
+			height: 100%
+
+	.breadcrumbs
+		position: relative
+		z-index: 2
+		margin-bottom: 0
+
+		li, a
+			color: white
+
+	.datetime
+		display: block
+		+font-d
+		color: white
+		text-align: center
+		margin-bottom: 3em
+
+.entry-img__content
+	position: absolute
+	+position(50%)
+	width: 94%
+	max-width: $flood-layout-width
+	max-height: 70%
+	overflow: hidden
+
+	+padding-horizontal(0 !important)
+	transform: translate(-50%, -50%)
+	z-index: 3
+
+.entry-img__title
+	margin: 0
+	+font(72px, 1)
+	color: $bg-color-base
+	text-shadow: 0 5px 20px rgba(0, 0, 0, 0.2)
+	text-align: center
+
+	+media('<desk-lg')
+		font-size: 60px
+
+	+media('<desk-md')
+		font-size: 48px
+
+	+media('<mob-lg')
+		font-size: 44px
+
+	+media('<mob-md')
+		font-size: 22px
+
+.heading, .sub-heading
+	// display flex
+	display: flex
+	justify-content: space-between
+	//align-items: flex-start
+	align-items: center
+	//flex-wrap: wrap
+	line-height: 1
+	//max-width: $flood-layout-width
+	margin: 0 auto 2rem
+
+	+media('<tab-lg')
+		display: block
+		margin-bottom: 4rem
+
+	+media('<mob-lg')
+		margin-bottom: 2rem
+
+	h1, h2, h3
+		position: relative
+		+display-inline-block-middle
+		padding-right: 50px
+		margin-bottom: 2rem
+		//max-width: 80%
+
+		+media('<tab-lg')
+			display: block
+			padding-right: 0
+
+		+media('<mob-lg')
+			margin-bottom: 1rem
+
+		&:last-child
+			margin-right: 0
+
+	.sep
+		position: absolute
+		+size(100px, 0)
+		top: 50%
+		left: 100%
+		border-top: 1px solid $tape-slider-color
+		margin-top: -1px
+
+		+media('<tab-lg')
+			display: none
+
+.heading__options
+	+display-inline-block-top
+	margin-bottom: 2rem
+	flex-shrink: 0
+
+	+media('<tab-lg')
+		display: block
+		text-align: left
+		margin-bottom: 1rem
+
+.heading__options__item
+	display: inline-block
+	vertical-align: middle
+	margin-left: 20px
+
+	&:first-child, &.first-child
+		margin-left: 0
+
+.heading__options__item--filters-show
+	display: none
+
+	+media('<tab-lg')
+		display: inline-block
+
+.c-info
+	.c-info__heading
+		color: $base-color
+
+		h1, h2, h3, h4
+			margin-bottom: 0
+			color: inherit
+
+.item--shops-view-switcher
+	+media('<tab-lg')
+		display: none
+
+.note
+	color: #b3b3b3
+	text-transform: uppercase
+	+font(1.2rem, round-float(24/12, 2))
+	letter-spacing: 0.05em
+
+	+media('<mob-md')
+		font-size: 1.1rem
+		line-height: round-float(15/11, 2)
+
+	&.note--align-right
+		max-width: 528px
+		margin-left: auto
+
+		+media('<tab-lg')
+			max-width: none
+
+.mark
+	color: $mark-color
+	font-style: inherit
+	font-weight: inherit
+
+.text-mark
+	color: $base-color
+
+.light-color
+	color: $text-color-light
+
+.text-color-alt
+	color: $base-color
+
+.align-center
+	text-align: center
+
+.align-left
+	text-align: left
+
+.align-right
+	text-align: right
+
+.float-left
+	float: left
+
+.float-right
+	float: right
+
+.nobr
+	white-space: nowrap
+
+.hide-text
+	+hide-text
+
+.for-mob
+	+media('>=tab-lg')
+		display: none !important
+
+.for-desk
+	+media('<tab-lg')
+		display: none !important
+
+.hide-min-1200
+	+media('>=desk-sm')
+		display: none !important
+
+[data-short]
+	+media('<mob-lg')
+		display: inline-block
+		vertical-align: baseline
+		font-size: 0
+
+	&::before
+		content: attr(data-short)
+		font-size: $font-size
+		display: none
+
+		+media('<mob-lg')
+			display: inherit
+
+.warning-success, .warning-error
+	//display: inline-block
+	//vertical-align: top
+	position: relative
+	//padding: round($grid-space/2) $grid-space round($grid-space/2) 60px
+	padding-left: 40px
+	//border: 1px solid currentColor
+	margin-bottom: $bottom-space
+
+	+media('<desk-md')
+		padding-left: 35px
+
+	+media('<mob-lg')
+		padding-left: 30px
+
+	&:last-child
+		margin-bottom: 0
+
+	p
+		margin: 0
+
+	p:first-child
+		+font-alt-bold
+		+font($font-size-h2, $line-height-h2)
+
+		+media('<desk-md')
+			+font($font-size-h2--md, $line-height-h2--md)
+
+		+media('<mob-lg')
+			+font($font-size-h2--sm, $line-height-h2--sm)
+
+	p:nth-child(2)
+		color: $text-color-light
+		text-transform: uppercase
+		font-size: 1.2rem
+		line-height: 2
+		letter-spacing: 0.05em
+
+	&::before, &::after
+		content: ""
+		display: block
+		position: absolute
+		left: 0
+		top: 0
+		border: solid currentColor
+		border-width: 4px 0 0
+		height: 0
+
+		+media('<desk-md')
+			border-top-width: 3px
+
+		+media('<mob-lg')
+			border-top-width: 2px
+
+.warning-success
+	color: $form-success-color
+	//background: rgba($form-success-color, 0.1)
+
+	&::before
+		width: 16px
+		transform: rotate(45deg)
+		//left: 16px
+		//top: 31px
+		left: -1px
+		top: 17px
+
+		+media('<desk-md')
+			width: 12px
+			left: -1px
+			top: 14px
+
+		+media('<mob-lg')
+			width: 10px
+			left: -1px
+			top: 13px
+
+	&::after
+		width: 24px
+		transform: rotate(-45deg)
+		//left: 24px
+		//top: 28px
+		left: 7px
+		top: 14px
+
+		+media('<desk-md')
+			width: 20px
+			left: 5px
+			top: 12px
+
+		+media('<mob-lg')
+			width: 16px
+			left: 4px
+			top: 11px
+
+.warning-error
+	color: $form-error-color
+	//background: rgba($form-error-color, 0.1)
+
+	&::before, &::after
+		width: 24px
+		//left: 20px
+		//top: 28px
+		left: -2px
+		top: 14px
+
+		+media('<desk-md')
+			width: 22px
+			top: 12px
+
+		+media('<mob-lg')
+			width: 20px
+			top: 10px
+
+	&::before
+		transform: rotate(45deg)
+
+	&::after
+		transform: rotate(-45deg)
+
+.order-calc__empty-alert
+	position: fixed
+	right: $layout-spaces
+	top: $header-height + 20
+	+font-alt
+	+font(2.0rem, 1)
+	color: $form-error-color
+	padding: round($grid-space/2) $grid-space
+	border: 1px solid currentColor
+	//border-radius: 5px
+	background-color: rgba(#fff, 0.85)
+	box-shadow: 2px 2px 5px rgba(black, 0.13)
+	z-index: 999
+	user-select: none
+	pointer-events: none
+	-webkit-tap-highlight-color: transparent
+	will-change: opacity, visibility, transform
+
+	@include media('<desk-hd')
+		right: $layout-spaces--hd
+
+	@include media('<desk-lg')
+		right: $layout-spaces--lg
+		top: $header-height--lg + 20
+
+	@include media('<desk-sm')
+		right: $layout-spaces--sm
+
+	@include media('<mob-lg')
+		right: $layout-spaces--mob
+		font-size: 1.6rem
+
+body
+	.hide--always
+		display: none !important
+
+	.hide--tab-sm
+		+media('<tab-sm')
+			display: none !important
+
+	.hide--mob-lg
+		+media('<mob-lg')
+			display: none !important
+
+	.hide--mob-md
+		+media('<mob-md')
+			display: none !important
+
+/* bottom space
+.bottom-space
+	margin-bottom: $bottom-space
+
+	+media('<desk-lg')
+		margin-bottom: round-float($bottom-space*0.8, 2)
+
+	+media('<tab-lg')
+		margin-bottom: round-float($bottom-space*0.7, 2)
+
+	+media('<mob-lg')
+		margin-bottom: round-float($bottom-space*0.6, 2)
+
+	&:last-child
+		margin-bottom: 0
+
+.bottom-space-lg
+	margin-bottom: $bottom-space--lg
+
+	+media('<desk-lg')
+		margin-bottom: round-float($bottom-space--lg*0.8, 2)
+
+	+media('<tab-lg')
+		margin-bottom: round-float($bottom-space--lg*0.65, 2)
+
+	+media('<mob-lg')
+		margin-bottom: round-float($bottom-space--lg*0.5, 2)
+
+	&:last-child
+		margin-bottom: 0
+
+/* bottom space end
+
+/* content img
+.imgc
+	text-align: center
+	margin-bottom: $bottom-space
+	clear: both
+
+	figcaption
+		display: block
+		padding: $bottom-space 0 0
+		margin: 0
+		+font($font-size--sm, $line-height--sm)
+
+.imgl
+	text-align: left
+	float: left
+	margin: 0 $bottom-space $bottom-space 0 !important
+
+.imgr
+	text-align: right
+	float: right
+	margin: 0 0 $bottom-space $bottom-space !important
+
+.imgl, .imgr
+	max-width: 40% !important
+
+	+media('<tab-sm')
+		float: none
+		display: block
+		margin-left: auto
+		margin-right: auto
+		max-width: 100% !important
+
+/* content img end
+
+/* columnize
+.columnize, .columnize--3, .columnize--4
+	column-count: 2
+	column-gap: 2em
+	margin-bottom: $bottom-space
+	font-size: 0.9em
+
+.columnize--3
+	column-count: 3
+	font-size: 0.85em
+
+.columnize--4
+	column-count: 4
+	font-size: 0.8em
+
+	+media('<desk-sm')
+		column-count: 3
+
+.columnize--3, .columnize--4
+
+	+media('<tab-lg')
+		column-count: 2
+
+.columnize, .columnize--3, .columnize--4
+
+	+media('<tab-sm')
+		column-count: 1
+
+/* columnize end
+
+/* list
+.#{$user-content}
+	//list
+	ul, ol
+		margin: 0 0 $bottom-space
+		padding: 0
+		list-style: none
+
+		li
+			padding-left: 30px
+			margin: 0 0 round($bottom-space*0.5)
+			position: relative
+
+	ul > li::before
+		+pseudo()
+		left: 0
+		top: round-float($font-size*$line-height/2, 1)
+		+size(0)
+		border: 4px solid $base-color
+		margin-top: -4px
+		border-radius: 50%
+
+	ol
+		counter-reset: section
+
+		& > li
+			counter-increment: section
+			height: 1%
+			overflow: hidden
+
+			&::before
+				position: relative
+				display: inline-block
+				text-align: left
+				+font-bold
+				color: $base-color
+				content: counter(section)
+				padding: 0 4px 0 0
+				min-width: 30px
+				margin-left: -30px
+
+	ul, ol
+		ul, ol
+			margin: round($bottom-space*0.5) 0
+
+ul, ol
+	.#{$user-content} > &:last-child,
+	.layout-article:last-child > &:last-child
+		margin-bottom: 0
+
+/* list reset
+.reset-list,
+.#{$user-content} .reset-list
+	list-style: none
+
+	li
+		&, &:first-child
+			padding: 0
+
+			&::before
+				content: none
+
+/* list reset end
+/* list end
+
+/* table
+table
+	border-collapse: collapse
+	border-spacing: 0
+	width: auto
+
+	td, th
+		+font-normal
+		+font($font-size, round-float(20/16,2))
+		color: inherit
+		padding: 10px 20px
+		border-color: $border-color
+
+		+media('<tab-lg')
+			padding: 10px 15px
+
+		p:last-child
+			margin-bottom: 0
+
+	th, thead td
+		+font-bold
+
+.table-auto
+	position: relative
+	overflow: auto
+	max-width: 100%
+	-webkit-overflow-scrolling: touch
+	margin-bottom: $bottom-space--lg
+
+	table
+		margin-bottom: 0
+		width: auto
+		min-width: 100%
+
+.#{$user-content}
+	table
+		margin-bottom: $bottom-space--lg
+
+		+media('<desk-lg')
+			margin-bottom: round-float($bottom-space--lg*0.8, 2)
+
+		+media('<tab-lg')
+			margin-bottom: round-float($bottom-space--lg*0.65, 2)
+
+		+media('<mob-lg')
+			margin-bottom: round-float($bottom-space--lg*0.5, 2)
+
+	.table-auto table
+		margin-bottom: 0
+
+	.tbl
+		border: none
+
+		td, th
+			color: $text-color
+			background-color: $bg-color
+			border: 0 solid $border-color
+			border-width: 0 1px
+
+			//&:first-child, &:first-child
+				border-left-width: 0
+
+			//&:last-child, &:last-child
+				border-right-width: 0
+
+		//tr:hover
+			td, th
+				background-color: $bg-color-alt
+
+		//tr:last-child
+			td
+				border-bottom-width: 1px
+
+		td
+			border-bottom-width: 1px
+
+		tbody tr:first-child td
+			border-top-width: 1px
+
+		//tbody tr:nth-child(even) td
+			background: $base-color
+			color: $bg-color-base
+
+		th, thead td, .theader
+			+font-bold
+			font-size: $font-size--sm
+			letter-spacing: 0.025em
+			text-align: left
+			text-transform: uppercase
+
+		th, thead td, tfoot td, .theader
+			background: $bg-color-alt
+			border-top-width: 0
+			border-bottom-width: 0
+
+/* table end
+
+/* blockquote
+.#{$user-content}
+	$bq-width: 540px
+
+	blockquote
+		display: block
+		margin: $bottom-space--lg 0
+		padding: 0
+
+		q
+			margin: 0
+			padding: 0 0 $bottom-space
+			+font-alt-italic
+			+font(3rem, round-float(36/30, 2))
+			color: $text-color
+			text-align: center
+
+			&::before, &::after
+				+pseudo-block-relative()
+				width: 24px
+				height: 15px
+				+push-auto
+				background-position: center
+				background-repeat: no-repeat
+				background-size: contain
+				line-height: 1
+
+			&::before
+				content: ''
+				margin-bottom: $bottom-space
+				background-image: url(../../img/ql.png)
+
+			&::after
+				content: ''
+				margin-top: $bottom-space
+				background-image: url(../../img/ql.png)
+
+		cite
+			+font(2rem, round-float(36/30, 2))
+			color: $base-color
+			text-align: right
+
+		q, cite
+			display: block
+			max-width: $bq-width
+			+push-auto
+			+font-alt-italic
+			+padding-horizontal(#{$text-layout-space-horizontal})
+
+/* blockquote end
+
+/* user spacer
+.user-spacer
+	display: block
+	height: $bottom-space--lg
+	+font(0, 0)
+	+clear
+
+	+media('<desk-lg')
+		height: $bottom-space--ml
+
+/* user spacer end
+
+/* datetime
+.datetime
+	display: block
+	font-style: normal
+	margin-bottom: $bottom-space
+
+/* datetime end
+
+/* view print
+.view-print
+	+display-inline-block-top
+	margin-bottom: $bottom-space--lg
+	line-height: 1
+	color: $text-color-base
+	text-decoration: none
+
+	@if $animation-use
+		transition:
+			property: background-color
+			duration: $animation-speed
+
+	+media('<desk-lg')
+		margin-bottom: $bottom-space--ml
+
+	+media('<tab-lg')
+		display: none
+
+	&:last-child
+		margin-bottom: 0
+
+	svg
+		display: inline-block
+		vertical-align: middle
+		width: 20px
+		height: 20px
+		margin-right: 5px
+
+	path
+		fill: currentColor
+
+		@if $animation-use
+			transition:
+				property: fill
+				duration: $animation-speed
+
+	span
+		display: inline-block
+		vertical-align: middle
+
+	// hover
+	.no-touchevents &:hover
+		color: $base-color
+		fill: $base-color
+
+/* view print end

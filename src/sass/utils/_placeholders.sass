@@ -1,0 +1,51 @@
+// =============================================================================
+// pow
+// =============================================================================
+/// Возведение в степень
+///
+/// @param {Number, Length} $number - Число
+/// @param {Number, Length} $exponent - Степень
+/// @return {Number} - Значение `$number` возведенно в степень `$exponent`
+
+@function pow($number, $exponent)
+	$value: 1
+
+	@if $exponent > 0
+		@for $i from 1 through $exponent
+			$value: $value * $number
+
+	@return $value
+
+// =============================================================================
+// round-float
+// =============================================================================
+/// Округление до n знаков после запятой
+///
+/// @param {Number, Length} $number - Число
+/// @param {Number, Length} $n - Количество знаков после запяной
+/// @return {Number} - Значение округленное до `n` знаков после запятой
+
+@function round-float($number, $n)
+	$float: pow(10,$n)
+
+	$value: round($number*$float)/$float
+
+	@return $value
+
+/// Remove the unit of a length
+/// @param {Number} $number - Number to remove unit from
+/// @return {Number} - Unitless number
+@function strip-unit($number)
+	@if type-of($number) == 'number' and not unitless($number)
+		@return $number / ($number * 0 + 1)
+
+	@return $number
+
+/// Получить катет прямоугольного равнобедренного треугольника
+/// @param {Number} $number - Длина гипотенузы
+/// @param {Number} $n -Количество знаков после запяной при округлении
+/// @return {Number} - Длинна катета
+@function get-catheter($number)
+	$unit: $number * 0 + 1
+
+	@return sqrt(pow(strip-unit($number), 2)/2)*$unit

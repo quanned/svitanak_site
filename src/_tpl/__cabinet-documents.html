@@ -1,0 +1,99 @@
+@@include('_tpl_layout_head.html', {
+	"title": "Личный кабинет",
+	"pageClass": ""
+})
+
+@@include('_tpl_PAGE_WRAP.html', {"pageWrap": "START" })
+
+<!--HEADER-->
+@@include('_tpl_layout_header.html', {
+	"currentItem": ""
+})
+<!--HEADER end-->
+
+<!--MAIN-->
+<div class="main">
+	<div class="main__holder">
+
+		<!--CONTENT-->
+		<div class="content-wrap">
+			<div class="content user-content">
+
+				@@include('_tpl_breadcrumbs.html', {
+					"items": ["Главная", "Личный кабинет"],
+					"last": "Документы"
+				})
+
+				<div class="heading">
+					<h1>Личный кабинет <span class="sep">&nbsp;</span></h1>
+					<div class="heading__options">
+						<a href="#" class="btn-underline"><span>выйти</span></a>
+					</div>
+				</div>
+
+				<!--cabinet-->
+				<div class="pseudotabs cabinet layout-flood">
+					@@include('_tpl_pseudotabs-nav.html', {
+						"active": "Документы"
+					})
+
+					<div class="pseudotabs-panels">
+						<div class="pseudotabs-panel">
+							<ul class="list-dividers">
+								<li>
+									<a href="#" class="file">
+										@@include("includes-json/svg/icon-doc.svg")
+										<span>Заключение о соответствии согл. №214-ФЗ. Дом №2.</span>
+										<em>DOC / 17 Kb</em>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="file">
+										@@include("includes-json/svg/icon-pdf.svg")
+										<span>Положительное заключение экспертизы. Этап 2.</span>
+										<em>PDF / 170 Kb</em>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="file">
+										@@include("includes-json/svg/icon-exl.svg")
+										<span>Выписка из ЕГРН о собственности на земельный участок. ДОМ 1.</span>
+										<em>EXL / 117 Kb</em>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="file">
+										@@include("includes-json/svg/icon-txt.svg")
+										<span>Разрешение на строительство. 1 этап. 15.03.2017.</span>
+										<em>TXT / 317 Kb</em>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="file">
+										@@include("includes-json/svg/icon-exl.svg")
+										<span>Заключение о соответствии согл. №214-ФЗ. Дом №2.</span>
+										<em>EXL / 1 Kb</em>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!--cabinet end-->
+
+			</div>
+		</div>
+		<!--CONTENT end-->
+	</div>
+</div>
+<!--MAIN end-->
+
+<!--SIDEBAR-->
+@@include('_tpl_layout_sidebar.html', {
+	"currentItem": ""
+})
+<!--SIDEBAR-->
+
+@@include('_tpl_PAGE_WRAP.html', { "pageWrap": "END" })
+
+@@include('_tpl_layout_foot.html')

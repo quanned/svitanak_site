@@ -1,0 +1,191 @@
+<footer class="footer max-wrap">
+
+	<div class="footer__holder">
+		<!--footer common-->
+		<div class="footer-common">
+			<div class="footer-common-holder">
+				<div class="footer-common__cols">
+					<div class="footer-common__col">
+						<strong class="footer-common__title">Адрес</strong>
+						<address class="adr">
+							222160,&nbsp;Республика&nbsp;Беларусь, Минская&nbsp;обл., г.&nbsp;Жодино, <span class="nobr">ул. 8 Марта, 1</span>.
+						</address>
+					</div>
+					<div class="footer-common__col">
+						<div class="footer-common__cell">
+							<strong class="footer-common__title"><a href="contacts.html">Контакты</a></strong>
+							<ul class="dl">
+								<li>
+									<div class="dt">Телефон:</div>
+									<div class="dd"><a href="tel:+375177533620">+375 (17) 753-36-20</a></div>
+								</li>
+								<li>
+									<div class="dt">Факс:</div>
+									<div class="dd"><a href="tel:+375177570373">+375 (17) 757-03-73</a></div>
+								</li>
+								<li>
+									<div class="dt">E-mail:</div>
+									<div class="dd"><a href="mailto:office@svitanak.by">office@svitanak.by</a></div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="footer-common__col">
+						<strong class="footer-common__title">Социал</strong>
+						@@include('_tpl_social.html')
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--footer common end-->
+
+		<!--footer bottom-->
+		<div class="footer-bottom">
+			<div class="footer-bottom__holder">
+				<div class="footer-bottom__cols">
+					<div class="footer-bottom__col">
+						<span class="copyright">&copy;&nbsp;2017 ОАО&nbsp;«Свiтанак» Производство белоруского трикотажа</span>
+					</div>
+					<div class="footer-bottom__col">
+						<span class="copyright">Копирование и перепечатка материалов сайта запрещены</span>
+					</div>
+					<div class="footer-bottom__col">
+						<!--developer-->
+						<div class="developer">
+							<a href="http://astronim.by/" target="_blank">
+								<span class="developer__label">Разработка сайта</span>
+								<span class="developer__logo">Astronim*Support</span>
+							</a>
+						</div>
+						<!--developer end-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--footer bottom end-->
+	</div>
+
+</footer>
+
+<!--message popup-->
+<div id="msg-popup" class="default-popup mfp-with-anim mfp-hide">
+	<div class="default-popup__content">
+		<div class="pseudotabs-nav">
+			<div class="pseudotabs-tab">
+				<a href="javascript:void(0)" class="active-tab"><span>Сообщение</span></a>
+			</div>
+			<div class="pseudotabs-tab">
+				<a href="#callback-popup" class="btn-popup-js"><span>Перезвоните мне</span></a>
+			</div>
+		</div>
+		<div class="msg-form">
+			<form action="#" method="post">
+				<div class="js-form_result js-ajax_replace" id="form-result-message">
+					<div class="success-text">Спасибо!<br> Ваша заявка  принята!</div>
+				</div>
+				<!--<label for="">Ваше имя:</label>-->
+				<input type="text" placeholder="Ваше имя">
+				<div class="error-note">Поле обязательное для заполнения</div>
+				<div class="success-note">Подтверждено</div>
+				<!--<label for="">E-mail:</label>-->
+				<input type="email" placeholder="E-mail">
+				@@include('_tpl_forms_form-validation.html')
+				<!--<label for="">Телефон:</label>-->
+				<input type="text" placeholder="Телефон">
+				@@include('_tpl_forms_form-validation.html')
+				<!--<label for="">Сообщение:</label>-->
+				<textarea placeholder="Сообщение"></textarea>
+				@@include('_tpl_forms_form-validation.html')
+				<div class="form-buttons">
+					<button class="btn-default btn-submit">Отправить</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!--callback popup-->
+<div id="callback-popup" class="default-popup mfp-with-anim mfp-hide">
+	<div class="default-popup__content">
+		<div class="pseudotabs-nav">
+			<div class="pseudotabs-tab">
+				<a href="#msg-popup" class="btn-popup-js"><span>Сообщение</span></a>
+			</div>
+			<div class="pseudotabs-tab">
+				<a href="javascript:void(0)" class="active-tab"><span>Перезвоните мне</span></a>
+			</div>
+		</div>
+		<div class="msg-form">
+			<form action="#" method="post">
+				<!--<label for="">Ваше имя:</label>-->
+				<input type="text" placeholder="Ваше имя">
+				<div class="error-note">Поле обязательное для заполнения</div>
+				<div class="success-note">Подтверждено</div>
+				<!--<label for="">Телефон:</label>-->
+				<input type="text" placeholder="Телефон">
+				@@include('_tpl_forms_form-validation.html')
+				<div class="form-buttons">
+					<button class="btn-default btn-submit">Жду звонка</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!--reg popup-->
+<div id="reg-popup" class="default-popup mfp-with-anim mfp-hide">
+	<div class="default-popup__content">
+		<div class="pseudotabs-nav">
+			<div class="pseudotabs-tab">
+				<a href="#log-popup" class="btn-popup-js"><span>Вход</span></a>
+			</div>
+			<div class="pseudotabs-tab">
+				<a href="javascript:void(0)" class="active-tab"><span>Регистрация</span></a>
+			</div>
+		</div>
+		<div class="msg-form">
+			<form action="#" method="post">
+				<!--<label for="">E-mail:</label>-->
+				<input type="email" placeholder="E-mail">
+				@@include('_tpl_forms_form-validation.html')
+				<!--<label for="">Пароль:</label>-->
+				<input type="password" placeholder="Пароль">
+				@@include('_tpl_forms_form-validation.html')
+				<!--<label for="">Повторите пароль:</label>-->
+				<input type="password" placeholder="Повторите пароль">
+				<div class="error-note">Пароли не совпадают</div>
+				<div class="success-note">Подтверждено</div>
+				<div class="form-buttons">
+					<button class="btn-default btn-submit">Зарегистрироваться</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!--log popup-->
+<div id="log-popup" class="default-popup mfp-with-anim mfp-hide">
+	<div class="default-popup__content">
+		<div class="pseudotabs-nav">
+			<div class="pseudotabs-tab">
+				<a href="javascript:void(0)" class="active-tab"><span>Вход</span></a>
+			</div>
+			<div class="pseudotabs-tab">
+				<a href="#reg-popup" class="btn-popup-js"><span>Регистрация</span></a>
+			</div>
+		</div>
+		<div class="msg-form">
+			<form action="#" method="post">
+				<!--<label for="">E-mail:</label>-->
+				<input type="email" placeholder="E-mail">
+				@@include('_tpl_forms_form-validation.html')
+				<!--<label for="">Пароль:</label>-->
+				<input type="password" placeholder="Пароль">
+				@@include('_tpl_forms_form-validation.html')
+				<div class="form-buttons">
+					<button class="btn-default btn-submit">Войти</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

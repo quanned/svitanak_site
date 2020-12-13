@@ -1,0 +1,231 @@
+@import ../utils/variables
+@import ../utils/mixins
+@import ../../libs/include-media/dist/include-media
+
+/* user form
+
+.form-caption
+	position: relative
+	display: block
+	margin-bottom: $uf-row-bottom-space
+
+	.input-wrap + &
+		margin-top: round($uf-row-bottom-space*1.8)
+
+	+media(#{$media--md})
+		margin-bottom: $uf-row-bottom-space--sm
+		position: static
+
+		.input-wrap + &
+			margin-top: round($uf-row-bottom-space--sm*1.8)
+
+.form-title
+	display: block
+	position: relative
+	+font-alt-bold
+	+font(30px, round-float(36/30, 2))
+	color: $title-color
+	text-transform: uppercase
+	margin-bottom: $uf-row-bottom-space
+
+	+media(#{$media--md})
+		margin-bottom: $uf-row-bottom-space--sm
+
+	+media(#{$media--sm})
+		font-size: 24px
+
+	.form-caption &
+		width: 50%
+
+		+media(#{$media--md})
+			width: auto
+
+		br
+			+media(#{$media--md})
+				display: none
+
+	&::after
+		+pseudo()
+		+position(100%)
+		+size(100px, 0)
+		margin: -0.7em 0 0 20px
+		border-top: 1px solid $text-color
+
+		+media('<tab-sm')
+			display: none
+
+.form-subtitle
+	+font-alt-bold
+	+font($font-size-h2, $line-height-h2)
+	color: $title-color
+	margin-bottom: $uf-row-bottom-space
+
+	+media('<desk-md')
+		+font($font-size-h2--md, $line-height-h2--md)
+
+	+media('<tab-sm')
+		margin-bottom: $uf-row-bottom-space--sm
+
+	+media('<mob-lg')
+		+font($font-size-h2--sm, $line-height-h2--sm)
+
+.btn-reset
+	+font($font-size, round-float(20/16, 2))
+	border: none
+	border-bottom: 1px dashed $text-color
+	background: none
+	box-shadow: none
+	margin: 0
+	padding: 0
+
+	&:hover
+		color: $base-color
+		border-color: $base-color
+
+	.form-caption &
+		position: absolute
+		right: 0
+		bottom: 0
+		margin-bottom: 0.6em
+
+		+media(#{$media--md})
+			margin-bottom: 0
+
+.user-form
+	&
+		background: $bg-color-alt
+		margin-bottom: $bottom-space--lg
+
+	&:last-child
+		margin-bottom: 0
+
+	form
+		display: block
+		position: relative
+
+	.input-wrap
+		margin-bottom: $uf-row-bottom-space
+		+clear
+
+		+media(#{$media--md})
+			margin-bottom: $uf-row-bottom-space--sm
+
+	.label-holder
+		float: left
+		width: $uf-label-width
+		margin-bottom: 0
+		padding: 0 20px 0 0
+		+clear-spacing
+		line-height: 1
+
+		+media(#{$media--md})
+			width: auto
+			float: none
+			padding: 0 0 10px
+
+		&::before
+			+pseudo-inline-block()
+			vertical-align: middle
+			min-height: $form-input-height
+
+			+media(#{$media--md})
+				content: none
+
+		label
+			+font(14px, round-float(17/14, 2))
+			letter-spacing: 0.1em
+			+display-inline-block-middle
+			max-width: calc(100% - 6px)
+			padding: 5px 0
+			text-transform: uppercase
+
+	.input-holder
+		margin-left: $uf-label-width
+
+		+media(#{$media--md})
+			margin-left: 0
+
+	textarea
+		height: 130px
+		max-height: 130px
+		resize: none
+
+	.form-footer
+		padding: $uf-row-bottom-space 0 0
+		border: solid #d9d9d9
+		border-width: 1px 0 0
+		text-align: center
+
+		&::after
+			content: none
+
+		+media(#{$media--md})
+			padding-top: $uf-row-bottom-space--sm
+
+	.form-buttons
+		float: none
+		margin-bottom: 20px
+
+		+media(#{$media--md})
+			float: none
+			text-align: center
+
+		.btn-submit
+			width: 200px
+
+			+media(#{$media--sm})
+				display: block
+				width: 100%
+
+		&:last-child
+			margin-bottom: 0
+
+	.form-note
+		//overflow: hidden
+		//min-height: $form-input-height
+		//max-width: $uf-label-width
+		//+clear-spacing
+		+font($font-size, $line-height)
+		//line-height: 25px
+		text-align: left
+		margin-bottom: 20px
+		min-height: 0
+
+		+media(#{$media--md})
+			+font($font-size--sm, $line-height--sm)
+
+		//&::before
+			content: ''
+			display: inline-block
+			vertical-align: middle
+			min-height: inherit
+
+		//+media(#{$media--md})
+			max-width: none
+			min-height: 0
+			padding-right: 120px
+
+		//+media(#{$media--sm})
+			padding: 0 0 30px
+
+		&:last-child
+			margin-bottom: 0
+
+		.form-mark
+			margin-left: 0
+			left: auto
+
+	.form-note__item
+		//display: inline-block
+		//vertical-align: middle
+		//width: calc(100% - 6px)
+		//letter-spacing: normal
+		margin-bottom: 10px
+
+		+media(#{$media--md})
+			margin-bottom: 5px
+
+		&:last-child
+			margin-bottom: 0
+
+/* user form end

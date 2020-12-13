@@ -1,0 +1,426 @@
+@import ../utils/functions
+@import ../utils/placeholders
+
+// medium query
+$breakpoints: ('desk-hd': 1920px, 'desk-lg': 1600px, 'desk-ml': 1440px, 'desk-md': 1366px, 'desk-sm': 1200px, 'tab-lg': 992px, 'tab-sm': 768px, 'mob-lg': 640px, 'mob-md': 480px, 'mob-sm': 320px)
+
+// base
+$font-size: 1.6rem !default
+$line-height: round-float(3.0rem/$font-size, 2) !default
+// ===============
+$font-size--sm: 1.4rem !default
+$line-height--sm: round-float(2.0rem/$font-size--sm, 2) !default
+// ===============
+$font-size--less: 1.2rem !default
+$line-height--less: round-float(1.8rem/$font-size--less, 2) !default
+// ===============
+$letter-spacing: 0.025em !default
+
+// =======h1========
+$font-size-h1: 4.8rem !default
+$line-height-h1: round-float(4.8rem/$font-size-h1, 2) !default
+// lg ===
+$font-size-h1--lg: 4.2rem !default
+$line-height-h1--lg: round-float(4.2rem/$font-size-h1--lg, 2) !default
+// md ===
+$font-size-h1--md: 3.6rem !default
+$line-height-h1--md: round-float(3.6rem/$font-size-h1--md, 2) !default
+// sm ===
+$font-size-h1--sm: 3.0rem !default
+$line-height-h1--sm: round-float(3.0rem/$font-size-h1--sm, 2) !default
+
+// =======h2========
+$font-size-h2: round-float($font-size-h1*36/48, 1) !default
+$line-height-h2: round-float(36/36, 2) !default
+// md ===
+$font-size-h2--md: round-float($font-size-h1--md*0.84, 1) !default
+$line-height-h2--md: 1 !default
+// sm ===
+$font-size-h2--sm: round-float($font-size-h1--sm*0.87, 1) !default
+$line-height-h2--sm: 1 !default
+
+// =======h3========
+$font-size-h3: round-float($font-size-h1*28/48, 1) !default
+$line-height-h3: round-float(28/28, 2) !default
+// md ===
+$font-size-h3--md: round-float($font-size-h1--md*0.78, 1) !default
+$line-height-h3--md: 1 !default
+// sm ===
+$font-size-h3--sm: round-float($font-size-h1--sm*0.73, 1) !default
+$line-height-h3--sm: 1 !default
+
+// =======h4========
+$font-size-h4: round-float($font-size-h1*22/48, 1) !default
+$line-height-h4: round-float(22/22, 2) !default
+
+// =======h5========
+$font-size-h5: $font-size !default
+$line-height-h5: $line-height !default
+
+// =======h6========
+$font-size-h6: round-float($font-size*0.75, 1) !default
+$line-height-h6: round-float($line-height*1.25, 2) !default
+
+$bottom-space: round-float($font-size*$line-height*2/3, 1) !default
+//$bottom-space--lg: round-float($bottom-space*3, 1) !default
+$bottom-space--lg: 3rem !default
+$bottom-space--md: round-float($bottom-space*2.0, 1) !default
+$bottom-space--ml: round-float($bottom-space*1.3, 1) !default
+$bottom-space--sm: round-float($bottom-space*0.75, 1) !default
+
+// =======Цветовая схема========
+// цвет бренда
+$base-color: #ff6501 !default
+$base-color-alt: lightskyblue !default
+// цвет фона страницы
+$bg-color: white !default
+// цвет фона элементов выделяющихся на страницы
+$bg-color-alt: #f2f2f2 !default
+// цвет фона выделенных элементов
+$bg-color-selected: #f3f3f3 !default
+// цвет фона структурных элементов
+$bg-color-light: #f7f7f7 !default
+// цвет основного текста
+$text-color: #1a1a1a !default
+// цвет основных заголовков
+$title-color: $text-color !default
+// цвет текста светлее основного
+$text-color-light: #b2b2b2 !default
+// цвет ссылки
+$link-color: $base-color !default
+// цвет линий и границ
+$border-color: #e6e6e6 !default
+// цвет специальных элементов
+$mark-color: tomato !default
+// =======Темы и спецверсии========
+// главные контрастные цвета (обычно, белый и черный)
+$text-color-base: black !default // использовать для цветовых тем и спецверсий
+$bg-color-base: white !default // использовать для цветовых тем и спецверсий
+
+// =======Класс текстовой страницы========
+// user content class
+// class на контейнере, в котором будет использоваться стилизация
+// типографических элементов: списков, таблиц, цытат и т.д.
+$user-content: user-content !default
+
+// =======Layout========
+// отступы слева и справа для всего сайта
+$page-layout-space-horizontal: 0 !default
+// максимальная ширина сайта
+$page-layout-width: 1920px !default
+// отступы между основновными элементами странницы
+//$layout-spaces: 100px - 9px !default // -9px (x2) для компенсации скролла
+$layout-spaces: 70px - 9px !default // -9px (x2) для компенсации скролла
+$layout-spaces--hd: 70px - 9px !default // -9px (x2) для компенсации скролла
+$layout-spaces--lg: 50px - 9px !default // -9px (x2) для компенсации скролла
+$layout-spaces--sm: 30px !default
+$layout-spaces--mob: 20px !default
+// минимальные отступы слева и справа у текствого блока
+$text-layout-space-horizontal: 40px !default
+$text-layout-space-horizontal--lg: 30px !default
+$text-layout-space-horizontal--md: 20px !default
+$text-layout-space-horizontal--sm: 15px !default
+// максимальная ширина текстового блока
+$text-layout-width: 640px !default
+// максимальная ширина текстового блока выходящего за пределы текста
+$flood-layout-width: 980px !default
+// отступы внутри блочных элементов
+$grid-space: 30px !default
+$grid-space--md: 20px !default
+$grid-space--sm: 10px !default
+
+// header
+$header-height: 100px !default
+$header-height--lg: 60px !default
+
+// sidebar
+$sidebar-width: 100px !default
+$sidebar-width--lg: 60px !default
+$sidebar-inside-space: 40px !default
+$sidebar-inside-space--lg: 20px !default
+
+// aside
+$aside-width: 320px !default
+$aside-width--sm: 280px !default
+//$aside-width-space: 40px !default
+//$aside-width-space--lg: 30px !default
+
+// footer
+$footer-grid-space: 100px !default
+$footer-grid-space--lg: 40px !default
+$footer-grid-space--sm: 20px !default
+
+// logo
+$logo-width: $sidebar-width !default
+$logo-width--lg: $sidebar-width--lg !default
+$logo-full-width: 280px !default
+$logo-full-width--lg: 175px !default
+$logo-full-width--sm: 150px !default
+$logo-full-width--mob: 130px !default
+
+// navigation
+$nav-arrow-size: 48px !default
+$nav-space: 4px 30px !default
+$nav-space--mob: 4px 15px !default
+
+// user options
+$user-options__height--sm: $header-height--lg
+
+// sliders
+$slider-arrow-size: 50px !default
+
+// article
+$article-footer-height: 126px !default
+
+// shutter
+$shutter-width: 975px !default
+$shutter-width--hd: 900px !default
+$shutter-width--lg: 850px !default
+$shutter-aside-width: 326px !default
+$shutter-space: 70px, 100px !default
+$shutter-space--hd: 60px, 60px !default
+$shutter-space--lg: 30px, 30px !default
+$bag-shutter-width: 470px !default
+
+// main slider
+$main-slider-color: $bg-color-base !default
+
+// tape slider
+$tape-slider-color: $text-color !default
+
+// news preview
+$news-preview-img-size: (250px, 250px) !default // width, height
+$news-preview-img-size--sm: (200px, 200px) !default // width, height
+$news-preview-space-between: 60px !default
+$news-preview-footer-height: 30px !default
+
+// previews tabs
+$previews-tabs-top-space: 230px !default
+$previews-tab-space: 1.6em !default
+$previews-tab-space--sm: 1.0em !default
+$previews-tab-font-size: 48px !default
+$previews-tab-font-size--lg: 36px !default
+$previews-tab-font-size--sm: 30px !default
+$previews-tab-line-height: 52px !default
+$previews-tab-line-height--lg: 40px !default
+$previews-tab-line-height--sm: 36px !default
+$previews-tab-line-height--mob: 30px !default
+
+// m-catalog
+$m-catalog__space: 85px, 100px !default
+$m-catalog-img__size: 250px, 375px !default // width, height
+$m-catalog-img__size--hd: 230px !default // width
+$m-catalog-img__size--lg: 200px !default // width
+$m-catalog-img__size--sm: 100px !default // width
+$m-catalog-img__duration: 10s !default
+$m-catalog-title__font-size: 48px !default
+$m-catalog-title__font-size--hd: 40px !default
+$m-catalog-title__font-size--lg: 32px !default
+$m-catalog-title__font-size--sm: 24px !default
+
+// popups
+$default-popup-width: 580px !default
+
+$popup-width: 1600px !default
+$popup-space: 50px !default
+
+// search form
+$search-form-popup-btn-size: 40px !default
+$search-form-popup-btn-size--sm: 24px !default
+
+// user form
+$uf-label-width: 250px
+$uf-label-width--md: 200px
+$uf-label-width--sm: 170px
+$uf-row-bottom-space: 50px
+$uf-row-bottom-space--sm: 30px
+
+$media--md: '<tab-sm'
+$media--sm: '<mob-lg'
+
+// products
+$products-space: 74px !default
+$products-space--md: 50px !default
+$products-space--sm: 30px !default
+$products-space--mob: 20px !default
+$products-grid-space: 30px !default
+$products-grid-space--md: 20px !default
+$product-content-width: 315px !default // или 50%
+$product-content-width--sm: 260px !default // или 50%
+$product-visual-space: 20px !default
+$product-dt: 120px !default
+
+// product card
+$p-card-space: 100px !default
+$p-card-space--hd: 80px !default
+$p-card-space--md: 50px !default
+$p-card-space--sm: 30px !default
+$p-card-ratio: 55% 45% !default
+$p-card-ratio--lg: 50% 50% !default
+$p-card-ratio--sm: 100% 100% !default
+
+$p-card-elem-bottom-space: 40px !default
+$p-card-elem-bottom-space--md: 25px !default
+
+// custom table, expl: cart, product
+$c-table__th-space: 15px 15px !default // h v
+$c-table__th-space--md: 15px 8px !default // h v
+$c-table__th-space--sm: 12px 5px !default // h v
+//=======
+$c-table__td-space: 20px 15px !default // h v
+$c-table__td-space--md: 16px 8px !default // h v
+$c-table__td-space--sm: 12px 5px !default // h v
+$c-table__del-size: 40px !default // размер кнопки (с крестиком) для удаления товара с таблицы
+$c-table__img-size: 70px 70px !default // width, height (in px). В коде высота вычисляется с соотношения ширины к высоте, а размер изображение берется в зависимости от ширины
+$c-table__img-space--sm: 15px !default // отступ справа от картинки
+
+// shops
+$shops-map-height: 662px !default
+$shops-map-height--md: 550px !default
+$shops-map-height--sm: 400px !default
+$shops-map-height--mob: 320px !default
+$shops-select-size: 100% 80px !default // w h
+
+// accordion
+$accordion-space: 20px 0 !default // h v
+$accordion-space--sm: 15px 0 !default // h v
+$accordion-space--mob: 10px 0 !default // h v
+$accordion-angle-size: 40px 40px !default // w h
+$accordion-angle-size--sm: 32px 32px !default // w h
+$accordion-angle-line-size: 10px 2px !default // w h
+
+// order
+$order-space-h: 100px
+$order-space-h--md: 60px
+$order-color--width: 205px
+$order-color--width--sm: 150px
+$order-price--width: 130px
+$order-price--width--sm: 150px
+$order-list-side--width: 108px
+$order-list-th--height: 70px
+$order-select-w: 114px
+$order-select-w--md: 50px
+
+// =======Form========
+$form-text-color: $text-color !default
+$form-placeholder-color: $text-color-light !default
+$form-bg-color: white !default
+$form-border-color: $text-color !default
+$form-border-focus-color: $base-color !default
+// form light
+$form-light-border-color: #d9d9d9 !default
+$form-light-border-focus-color: #000 !default
+// form warning
+$form-error-color: #ff203b !default
+$form-success-color: #319c46 !default
+$form-bottom-space: 3rem !default
+$form-bottom-space--sm: 1.5em !default
+$form-gap: 40px !default
+// ========checkbox&radio==========
+$checkbox-size: 22px
+$checkbox-img-size: 30px
+$checkbox-color: $text-color
+// =========form font=========
+$form-font-size: 16px !default
+$form-line-height: 24px !default
+$form-input-height: 50px !default
+$form-letter-spacing: null !default
+// =========form layout=========
+$form-border-width: 0 !default
+$form-input-space-vt: floor(($form-input-height - $form-line-height - $form-border-width*2)/2) !default // верхний паддинг округляем в нижнюю сторону
+$form-input-space-vb: ceil(($form-input-height - $form-line-height - $form-border-width*2)/2) !default // нижний паддинг округляем в верхнюю сторону
+$form-input-space-h: 20px !default
+// =========select=========
+$select-space-v: 12px !default
+$select-space-h: $form-input-space-h !default
+$select-arrow-width: 40px !default
+$select-arrow-height: 100% !default
+$multiple-item-space: 3px
+
+// spinner
+$spinner-btn-size: 30px // width
+$spinner-input-size: 54px // width
+
+// =========Buttons=========
+$btn-bg-color: #262626 !default
+$btn-bg-hover-color: $base-color !default
+$btn-text-color: white !default
+$disabled-color: #ccc !default
+
+// =========Animation=========
+$animation-use: false !default
+$animation-speed: 0.2s !default
+$animation-speed-mouseleave: 0.35s !default
+
+$animation-speed-section: 1s !default
+$animation-speed-element: 1s !default
+$animation-speed-element-delay: 0.8s !default
+
+// =========special style=========
+
+// =========fonts style=========
+// основоной шрифт
+$font-norm: 'gothampro-regular', sans-serif !default
+$font-bold: 'gothampro-bold', sans-serif !default
+$font-italic: 'gothampro-italic', sans-serif !default
+$font-bold-italic: 'gothampro-bold-italic', sans-serif !default
+$font-medium: 'gothampro-medium', sans-serif !default
+// дополнительный шрифт
+$font-alt: 'minionpro-regular', serif !default
+$font-alt-bold: 'minionpro-bold', serif !default
+$font-alt-italic: 'minionpro-italic', serif !default
+$font-alt-medium: 'minionpro-medium', serif !default
+
+// ============= обнуление жирности и наклонности шрифта ==============
+// ============= использовать, если подключается font-face ==============
+=font-reset()
+	font:
+		weight: normal
+		style: normal
+
+// ============= основоной шрифт ==============
+=font-normal()
+	font:
+		family: $font-norm
+	+font-reset
+
+=font-bold()
+	font:
+		family: $font-bold
+	+font-reset
+
+=font-italic()
+	font:
+		family: $font-italic
+	+font-reset
+
+=font-bold-italic()
+	font:
+		family: $font-bold-italic
+	+font-reset
+
+=font-medium()
+	font:
+		family: $font-medium
+	+font-reset
+
+// ========== дополнительный шрифт ============
+=font-alt()
+	font:
+		family: $font-alt
+	+font-reset
+
+=font-alt-bold()
+	font:
+		family: $font-alt-bold
+	+font-reset
+
+=font-alt-italic()
+	font:
+		family: $font-alt-italic
+	+font-reset
+
+=font-alt-medium()
+	font:
+		family: $font-alt-medium
+	+font-reset

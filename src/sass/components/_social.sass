@@ -1,0 +1,275 @@
+@import ../utils/variables
+@import ../utils/mixins
+@import ../../libs/include-media/dist/include-media
+
+// social color
+$facebook-color: #3a589e !default
+$vkontakte-color: #4b73a4 !default
+$twitter-color: #1da0f2 !default
+$odnoklassniki-color: #f2822e !default
+$youtube-color: #e62117 !default
+$instagram-color-start: #de4f5a !default
+$instagram-color-end: #a43b97 !default
+$social-space: 30px !default
+$social-space--lg: 20px !default
+
+/* social networks
+.social-networks
+	margin-bottom: $bottom-space
+	+clear
+
+	&:last-child
+		margin-bottom: 0
+
+.social-networks__list
+	position: relative
+	float: left
+	width: calc(100% + #{$social-space})
+	margin: 0 -#{round($social-space/2)} -#{round($social-space/2)}
+	font-size: 0
+
+	+media('<desk-lg')
+		width: calc(100% + #{$social-space--lg})
+		margin: 0 -#{round($social-space--lg/2)} -#{round($social-space--lg/2)}
+
+.social-networks__item
+	+display-inline-block-top
+	margin: 0 #{round($social-space/2)} round($social-space/2)
+	+font(14px, round-float(18/14, 2))
+	letter-spacing: normal
+
+	+media('<desk-lg')
+		margin: 0 #{round($social-space--lg/2)} round($social-space--lg/2)
+
+	a
+		display: block
+		position: relative
+		+size(50px)
+		border: 2px solid currentColor
+		color: $text-color
+		border-radius: 50%
+
+		span
+			+hide-text
+
+		svg
+			+centering-transform-abs
+			+size(20px)
+
+		path
+			fill: currentColor
+
+		.no-touchevents &:hover
+			color: $link-color
+
+		//.no-touchevents &:hover
+			&.fb
+				border-color: $facebook-color
+				fill: $facebook-color
+
+			&.vk
+				border-color: $vkontakte-color
+				fill: $vkontakte-color
+
+			&.twitter
+				border-color: $twitter-color
+				fill: $twitter-color
+
+			&.ok
+				border-color: $odnoklassniki-color
+				fill: $odnoklassniki-color
+
+			&.youtube
+				border-color: $youtube-color
+				fill: $youtube-color
+
+			&.instagram
+				border-color: $instagram-color-end
+				fill: $instagram-color-end
+				//+linear-gradient(to right, #{$instagram-color-start} 0%, #{$instagram-color-end} 100%)
+
+/* social networks end
+
+/* share
+$social-share-space: 12px !default
+$social-share-size: 50px !default
+
+.social-share
+	margin-bottom: $bottom-space
+	+clear-spacing
+
+	&:last-child
+		margin-bottom: 0
+
+input[type="checkbox"].social-share__check
+	+hide-text
+
+.social-share__opener
+	//&, input[type="checkbox"] ~ &
+	&
+		position: relative
+		+display-inline-block-middle
+		+size($social-share-size)
+		margin: 0 20px 0 0
+		+font($font-size, $line-height)
+		letter-spacing: normal
+		color: $text-color
+		text-decoration: none
+		cursor: pointer
+		border: 2px solid $text-color
+		border-radius: 50%
+		overflow: hidden
+
+		&::before, &::after
+			$this-icon-lines-width: 16px
+			$this-icon-lines-height: 4px
+			$this-icon-lines-color: white
+			// ==============
+			+pseudo()
+			left: 50%
+			top: 50%
+			margin: -1px 0 0 -8px
+			border: none
+			+size($this-icon-lines-width, $this-icon-lines-height)
+			background-color: $this-icon-lines-color
+			display: none
+
+		&::before
+			transform: rotate(-45deg)
+
+		&::after
+			transform: rotate(45deg)
+
+		&:hover
+			border-color: $link-color
+			color: $link-color
+
+	span
+		+hide-text
+
+	svg
+		position: absolute
+		left: 50%
+		top: 50%
+		+size(26px)
+		margin: -13px 0 0 -15px
+
+	path
+		fill: currentColor
+
+.social-share__list
+	display: none
+	vertical-align: middle
+	position: relative
+	margin: -#{round($social-share-space/2)} 20px -#{round($social-share-space/2)} 0
+
+.social-share__item
+	+display-inline-block-top
+	margin: #{round($social-share-space/2)}
+	+font(14px, round-float(18/14, 2))
+	letter-spacing: normal
+
+	a
+		display: block
+		position: relative
+		+size($social-share-size)
+		border: 2px solid currentColor
+		color: $text-color
+		border-radius: 50%
+
+		span
+			+hide-text
+
+		svg
+			+centering-transform-abs
+			+size(20px)
+
+		path
+			fill: currentColor
+
+		.no-touchevents &:hover
+			color: $link-color
+
+		//&:hover
+			&.fb
+				border-color: $facebook-color
+				fill: $facebook-color
+
+			&.vk
+				border-color: $vkontakte-color
+				fill: $vkontakte-color
+
+			&.twitter
+				border-color: $twitter-color
+				fill: $twitter-color
+
+			&.ok
+				border-color: $odnoklassniki-color
+				fill: $odnoklassniki-color
+
+			&.youtube
+				border-color: $youtube-color
+				fill: $youtube-color
+
+			&.instagram
+				border-color: $instagram-color-end
+				fill: $instagram-color-end
+				//+linear-gradient(to right, #{$instagram-color-start} 0%, #{$instagram-color-end} 100%)
+
+.social-share__label
+	position: relative
+	+display-inline-block-middle
+	+font-d()
+	color: $text-color-light
+	padding: 15px 0 15px 60px
+
+	&::before
+		+pseudo()
+		bottom: 50%
+		left: 0
+		+size(40px, 0)
+		border-top: 1px solid $text-color-light
+
+// show social icons
+//.social-share__check:checked
+	& ~ .social-share__list
+		display: inline-block
+
+	& ~ .social-share__opener
+		margin-right: round($social-share-space/2)
+		background-color: $text-color
+
+		&:hover
+			background-color: $link-color
+
+		svg
+			display: none
+
+		&::before, &::after
+			display: block
+
+.is-open
+	.social-share__list
+		display: inline-block
+
+	.social-share__opener
+		margin-right: round($social-share-space/2)
+		background-color: $text-color
+		user-select: none
+
+		&:hover
+			background-color: $link-color
+
+		svg
+			display: none
+
+		&::before, &::after
+			display: block
+
+	.social-share__list
+		margin-right: 0
+
+	.social-share__label
+		display: none
+
+/* share end

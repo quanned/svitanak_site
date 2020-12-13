@@ -1,0 +1,474 @@
+@import ../utils/variables
+@import ../utils/mixins
+@import ../../libs/include-media/dist/include-media
+
+/* shutter
+//html.css-scroll-fixed
+
+	&.touchevents
+		+scroll-blocked() // блокировка скролла во время открытия попапа (на тачскринах)
+
+//.content-wrap, .scroll-nav, .top-panel, .footer__holder
+	transition-property: transform
+	transition-duration: $animation-speed
+	transition-timing-function: cubic-bezier(0.65, 0.05, 0.36, 1) !important
+
+	.shutter--before-open &
+		transform: translate($nav-width - 250, 0)
+
+		+media('<tab-lg')
+			transform: none
+
+//.side-menu
+	.shutter--before-open &
+		transform: translate($sidebar-drop-width, 0)
+		transition-timing-function: cubic-bezier(0.65, 0.05, 0.36, 1)
+
+		+media('<tab-lg')
+			transform: none
+
+/* shutter layout
+.shutter
+	overflow: hidden // необходим для скрытия скролла
+	position: fixed
+	//left: 0
+	bottom: 0
+	min-width: 320px
+	background: $bg-color
+	opacity: 0
+	visibility: hidden
+	z-index: 1000
+	left: #{$sidebar-width}
+	will-change: transform
+	+size(100%, calc(100% - #{$header-height}))
+
+	+media('<desk-lg')
+		left: #{$sidebar-width--lg}
+		height: calc(100% - #{$header-height--lg})
+
+	+media('<desk-sm')
+		left: 0
+
+.shutter--before-open .footer
+	z-index: auto
+
+.shutter__align
+	//width: calc(100% + 100px)
+	overflow-x: hidden
+	overflow-y: auto
+	height: 100%
+
+	+media('<desk-sm')
+		width: 100%
+
+.shutter__holder
+	+clear
+	padding: nth($shutter-space, 1) $layout-spaces
+
+	+media('<desk-hd')
+		padding: nth($shutter-space--hd, 1) $layout-spaces--hd
+
+	+media('<desk-lg')
+		padding: nth($shutter-space--lg, 1) $layout-spaces--lg
+
+	+media('<desk-sm')
+		width: 100%
+		padding: nth($shutter-space--lg, 1) $layout-spaces--sm
+
+	+media('<mob-lg')
+		padding: nth($shutter-space--lg, 1) $layout-spaces--mob
+
+.shutter-content
+	float: left
+	width: calc(100% - #{$shutter-aside-width})
+	padding-right: $grid-space
+
+	+media('<tab-sm')
+		width: auto
+		float: none
+		padding: $layout-spaces--sm
+
+		display: none
+
+		&.active, .no-js &
+			display: block
+
+	+media('<mob-lg')
+		padding: $layout-spaces--mob
+
+.shutter-aside
+	float: right
+	width: $shutter-aside-width
+
+	+media('<tab-sm')
+		width: auto
+		float: none
+		padding: $layout-spaces--sm $layout-spaces--sm 40px
+		display: none
+
+		&.active, .no-js &
+			display: block
+
+	+media('<mob-lg')
+		padding: $layout-spaces--mob $layout-spaces--mob 30px
+
+	.dep-list
+		&, .#{$user-content} &
+
+			+media('<tab-sm')
+				+margin-horizontal(-$layout-spaces--sm)
+				margin-top: -$layout-spaces--sm
+				border-width: 0 0 1px
+
+				li:first-child
+					border-top: none
+
+			+media('<mob-lg')
+				+margin-horizontal(-$layout-spaces--mob)
+				margin-top: -$layout-spaces--mob
+
+/* shutter layout end
+
+/* shutter options
+.shutter__options
+	display: none
+	position: relative
+	padding-left: $header-height--lg
+	height: $header-height--lg
+	box-shadow: inset 0 1px 0 $border-color, 0 0 30px 10px white
+	//border: solid $border-color
+	//border-width: 0 0 1px
+	z-index: 10
+
+.menu-toggle
+	display: table
+	width: 100%
+	height: 100%
+	table-layout: fixed
+
+	a
+		display: table-cell
+		vertical-align: middle
+		text-align: center
+		text-decoration: none
+		+font-d()
+		background-color: $btn-bg-color
+		border: solid transparent
+		border-width: 0 0 1px
+		color: white
+
+		&.active
+			background-color: white
+			color: $text-color
+			border-color: $border-color
+
+/* shutter options end
+
+/* shutter footer
+.shutter__footer
+	border-top: 1px solid $border-color
+
+/* shutter footer end
+
+/* shutter panel
+.shutter__panel
+	display: none
+	position: absolute
+	left: 0
+	bottom: 0
+	width: 100%
+	background-color: white
+	z-index: 10
+	box-shadow: 0 0 40px 20px white
+
+	+media('<mob-md')
+		display: block
+
+	.user-options
+		display: table
+		table-layout: fixed
+		width: 100%
+		height: $user-options__height--sm
+		margin: 0
+		border: solid $border-color
+		border-width: 1px 0 0
+
+	.user-options__item
+		display: table-cell
+		vertical-align: middle
+		text-align: center
+		border: solid $border-color
+		border-width: 0 1px
+		padding: 0
+
+		& > a
+			display: block
+			width: auto
+			height: $user-options__height--sm
+
+/* shutter panel end
+
+/* button shutter close
+.btn-shutter-close
+	//<a href="#" class="btn-shutter-close js-btn-shutter-close"><i>&nbsp;</i><span>Закрыть</span></a>
+	$btn-shutter-close--bg: $btn-bg-color
+	$btn-shutter-close--color: $text-color
+	$btn-shutter-close--size: $header-height--lg
+	$btn-shutter-close--space: 12px
+	$btn-shutter-close--lines-width: 22px
+	$btn-shutter-close--lines-height: 2px
+	$btn-shutter-close--lines-space: 5px
+	$btn-shutter-close--lines-radius: 0
+	$btn-shutter-close--lines-color: white
+
+	display: block
+	+size($btn-shutter-close--size)
+	background: $btn-shutter-close--bg
+	color: white
+	text-decoration: none
+	+clear-spacing
+	white-space: nowrap
+	transition-property: background-color, opacity, visibility
+	transition-duration: $animation-speed
+
+	&::before
+		content: ''
+		display: inline-block
+		height: $btn-shutter-close--size
+		min-height: 100%
+		vertical-align: middle
+
+	.shutter__options &
+		position: absolute
+		left: 0
+		top: 0
+		border: solid $border-color
+		border-width: 0 1px 0 0
+
+	> span
+		+hide-text
+
+	> i
+		display: inline-block
+		vertical-align: middle
+		position: relative
+		//backface-visibility: hidden
+		background-color: transparent
+		+size($btn-shutter-close--lines-width, $btn-shutter-close--lines-height)
+		border-radius: $btn-shutter-close--lines-radius
+
+		&::before, &::after
+			+pseudo()
+			left: 0
+			//backface-visibility: hidden
+			+size($btn-shutter-close--lines-width, $btn-shutter-close--lines-height)
+			border-radius: $btn-shutter-close--lines-radius
+			background: $btn-shutter-close--lines-color
+			transition-property: background-color
+			transition-duration: $animation-speed
+
+		//first line menu
+		&::before
+			top: 0
+			transform: rotate(-45deg)
+
+		//third line menu
+		&::after
+			top: 0
+			transform: rotate(45deg)
+
+	//.no-touchevents &:hover
+		//background-color: $bg-color-selected
+		> i
+			&::before, &::after
+				background-color: $link-color
+
+/* button shutter close end
+
+.btn-popup-close
+	display: none
+	position: absolute
+	right: 0
+	top: 0
+
+	+media('<tab-lg')
+		display: block
+
+/* shutter wide
+.shutter--wide
+	max-width: #{$page-layout-width - $sidebar-width}
+
+	+media('<1921px')
+		max-width: calc(100% - #{$sidebar-width})
+
+	+media('<desk-lg')
+		max-width: calc(100% - #{$sidebar-width--lg})
+
+	+media('<desk-sm')
+		max-width: none
+
+	.shutter__align
+		width: 100%
+
+	.shutter__holder
+		width: 100%
+
+/* shutter wide end
+
+/* nav-shutter
+.nav-shutter
+	+media('<tab-sm')
+		height: 100%
+		z-index: 1040
+
+	&, .shutter__holder
+		width: $shutter-width
+
+		+media('<desk-lg')
+			width: $shutter-width--lg
+
+		+media('<desk-sm')
+			width: 100%
+
+		+media('<tab-sm')
+			padding: 0
+
+	.shutter__options
+		+media('<tab-sm')
+			display: block
+
+	.shutter__align
+
+		.no-touchevents &
+			overflow-y: hidden
+
+			+media('<desk-sm')
+				overflow: auto
+
+			&:hover
+				overflow-y: auto
+
+		+media('<tab-sm')
+			height: calc(100% - #{$header-height--lg})
+
+		+media('<mob-md')
+			height: calc(100% - #{$header-height--lg} - #{$user-options__height--sm})
+
+/* nav-shutter end
+
+/* search-shutter
+.search-shutter
+	+media('<tab-sm')
+		height: 100%
+		z-index: 1040
+
+	.shutter__holder
+		padding-top: 2rem
+
+		+media('<desk-sm')
+			padding-top: 1.5rem
+
+	.shutter__options
+		display: block
+		height: auto
+		min-height: $header-height
+		padding: nth($shutter-space, 1) $layout-spaces 2rem
+		box-shadow: 0 0 30px 10px white
+
+		+media('<desk-hd')
+			padding: nth($shutter-space--hd, 1) $layout-spaces--hd 2rem
+
+		+media('<desk-lg')
+			padding: nth($shutter-space--lg, 1) $layout-spaces--lg 2rem
+
+		+media('<desk-sm')
+			min-height: $header-height--lg
+			padding: nth($shutter-space--lg, 1) $layout-spaces--sm 1.5rem
+
+		+media('<tab-sm')
+			padding: 1.8rem $layout-spaces--sm 1.5rem
+
+		+media('<mob-lg')
+			padding: 2rem $layout-spaces--mob 1.5rem
+
+	.btn-shutter-close
+		display: none
+
+		+media('<tab-sm')
+			display: block
+
+	.search-form
+		+media('<tab-sm')
+			margin-left: $header-height--lg
+			margin-bottom: 3rem
+
+		+media('<mob-lg')
+			margin-bottom: 4rem
+
+	.shutter__align
+		height: calc(100% - #{$header-height--lg})
+
+/* search-shutter end
+
+/* bag-shutter
+.bag-shutter
+	$bag-shutter-width: 470px
+	// ======================
+	overflow: hidden
+	width: $bag-shutter-width
+	max-width: 100%
+	//left: auto
+	//right: 0
+	left: $page-layout-width
+	margin-left: -#{$bag-shutter-width}
+
+	+media('<desk-hd')
+		left: 100%
+
+	+media('<mob-lg')
+		width: 100%
+		left: auto
+		right: 0
+		margin-left: 0
+
+	&::before
+		+pseudo()
+		+size(120%, 100px)
+		left: -10%
+		top: -100px
+		box-shadow: 0 0 20px 10px white
+		z-index: 5
+		pointer-events: none
+
+	.shutter__align
+		overflow-y: hidden
+
+	.shutter__holder
+		width: #{$bag-shutter-width}
+		height: 100%
+		padding: 0
+
+		&::after
+			content: none
+
+		+media('<tab-lg')
+			width: 100%
+
+	.shutter__row
+		overflow-x: hidden
+		overflow-y: auto
+
+		&.shutter__footer
+			position: relative
+			overflow-y: hidden
+			box-shadow: 0 0 30px 10px #fff
+			z-index: 5
+
+	.shutter__cell
+		padding: $grid-space
+
+		+media('<mob-lg')
+			padding: $layout-spaces--mob
+
+/* bag-shutter end
+/* shutter end

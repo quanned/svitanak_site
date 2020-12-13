@@ -1,0 +1,165 @@
+@@include('_tpl_layout_head.html', {
+	"title": "Корзина",
+	"pageClass": ""
+})
+
+@@include('_tpl_PAGE_WRAP.html', {"pageWrap": "START" })
+
+<!--HEADER-->
+@@include('_tpl_layout_header.html', {
+	"currentItem": ""
+})
+<!--HEADER end-->
+
+<!--MAIN-->
+<div class="main">
+	<div class="main__holder">
+
+		<!--CONTENT-->
+		<div class="content-wrap">
+			<div class="content user-content">
+
+				@@include('_tpl_breadcrumbs.html', {
+					"items": ["Главная", "Личный кабинет"],
+					"last": "Мои заказы"
+				})
+
+				<div class="heading">
+					<h1>Корзина <span class="sep">&nbsp;</span></h1>
+					<div class="heading__options">
+						<a href="catalog.html" class="btn-underline btn-with-icon" title="Перейти в каталог">
+							<svg class="svg-ico-arr-l" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 62 45.2"><path d="M61.6 20.7c-0.8-2.3-3-3.7-5.6-3.7 -11.3 0-22.6 0-33.9 0h-1.1c0.3-0.3 0.5-0.5 0.7-0.6 2.4-2.1 4.8-4.2 7.1-6.3 2.9-2.6 2.9-6.6 0-8.8C28 0.7 27 0.4 26.1 0h-1.8c-1.8 0.4-3.2 1.6-4.6 2.8C14.1 7.8 8.4 12.8 2.7 17.7 1.4 18.8 0.4 20.1 0 21.8v1.6c0.4 1.9 1.7 3.2 3.1 4.5 5.7 4.9 11.3 9.9 17 14.9 1.2 1.1 2.5 2.1 4.2 2.5h1.8c0.7-0.3 1.5-0.5 2.2-0.9 3.1-1.8 3.7-6.1 1.1-8.6 -2.5-2.4-5.1-4.5-7.6-6.8 -0.2-0.2-0.4-0.4-0.7-0.7h1c11.2 0 22.4 0 33.6 0 3.4 0 5.3-1.4 6.3-4.7 0 0 0.1-0.1 0.1-0.1v-1.6C61.9 21.4 61.8 21.1 61.6 20.7z"></path></svg>
+							<span>В каталог</span>
+						</a>
+					</div>
+				</div>
+
+				<div class="c-info bottom-space-lg layout-flood">
+					<div class="c-info__heading bottom-space">
+						<h2>Заказ №astro/175</h2>
+						<div class="note">от 10 мая 2018 (заявка на текущий месяц)</div>
+					</div>
+
+					<p>
+						Цены в белорусских рублях приведены с учетом НДС, цены в других валютах — без НДС.
+						<br>
+						Обратите внимание! В связи с обновлением каталога были изменены некоторые данные в заказе.
+					</p>
+				</div>
+
+				<form action="" method="post">
+
+					<div class="cart-order bottom-space-lg order-calc-js">
+						<table class="c-table">
+							<thead class="c-thead">
+								<tr class="c-tr">
+									@@loop("_tpl_c-thead.html", "includes-json/order-calc__th--cart.json")
+								</tr>
+							</thead>
+							<tbody class="c-tbody">
+								@@loop("_tpl_order-calc-items--cart.html", "includes-json/order-calc__items.json")
+							</tbody>
+							<tfoot class="c-tfoot order-calc__total-results-js">
+								<tr class="c-tr">
+
+									<td class="c-td" colspan="4">
+										<div class="td__val">Итого:</div>
+									</td>
+
+									<td class="c-td" colspan="2">
+										<div class="c-td__val">
+											<span class="mark order-calc__packs-total-js">0</span>&nbsp;уп.
+										</div>
+									</td>
+
+									<td class="c-td" colspan="2">
+										<div class="c-td__val">
+											<span class="mark order-calc__counts-total-js">0</span>&nbsp;шт.
+										</div>
+									</td>
+
+									<td class="c-td" colspan="2">
+										<div class="c-td__val">
+											<span class="mark order-calc__price-total-js">0</span>&nbsp;руб.
+										</div>
+									</td>
+
+								</tr>
+							</tfoot>
+						</table>
+						<!--!!! Текст, который будет отображаться, когда нет товаров-->
+						<div class="order-calc__empty">- Корзина пуста -</div>
+						<!--!!! Текст, который всплывает после очистки корзины-->
+						<div class="order-calc__empty-alert">Ваша корзина пуста</div>
+					</div>
+
+					<div class="heading">
+						<h2>Личные данные <span class="sep">&nbsp;</span></h2>
+					</div>
+
+					<div class="layout-flood bottom-space-lg">
+						<div class="dl-list bottom-space">
+							<div class="dl-list__di">
+								<div class="dl-list__dt">Название компании:</div>
+								<div class="dl-list__dd">Astronim</div>
+							</div>
+							<div class="dl-list__di">
+								<div class="dl-list__dt">Электронная почта:</div>
+								<div class="dl-list__dd">petrov@astronim.com</div>
+							</div>
+							<div class="dl-list__di">
+								<div class="dl-list__dt">Телефон:</div>
+								<div class="dl-list__dd">+375 (29) 577-12-13</div>
+							</div>
+							<div class="dl-list__di">
+								<div class="dl-list__dt">ФИО контактного лица:</div>
+								<div class="dl-list__dd">Валерий Шотаевич Меладзе</div>
+							</div>
+							<div class="dl-list__di">
+								<div class="dl-list__dt">Дата поставки:</div>
+								<div class="dl-list__dd">&mdash;</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="heading">
+						<h2>Комментарий к заказу <span class="sep">&nbsp;</span></h2>
+					</div>
+
+					<div class="comment-form">
+						<!--<label for="form-clear-ta-base">Ваше сообщение...</label>-->
+						<textarea placeholder="Ваше сообщение..." class="dark-form"></textarea>
+						@@include('_tpl_forms_form-validation.html')
+						<div class="form-buttons">
+							<a href="#" class="btn-default-clean btn-with-icon order-calc__clear-cart-js disabled">
+								@@include("includes-json/svg/icon-close--btn.svg")
+								<span class="for-desk">Очистить корзину</span>
+								<span class="for-mob">Очистить</span>
+							</a>
+							<button class="btn-default order-calc-btn float-right">
+								<span class="for-desk">Оформить заказ</span>
+								<span class="for-mob">Оформить</span>
+							</button>
+							<a href="#" class="btn-default-alt order-calc-btn float-right">Сохранить</a>
+						</div>
+						<div class="note note--align-right">После оформления заказа менеджер ОАО «Свiтанак» свяжется с Вами для уточнения окончательных деталей заказа.</div>
+					</div>
+
+				</form>
+
+			</div>
+		</div>
+		<!--CONTENT end-->
+	</div>
+</div>
+<!--MAIN end-->
+
+<!--SIDEBAR-->
+@@include('_tpl_layout_sidebar.html', {
+	"currentItem": ""
+})
+<!--SIDEBAR-->
+
+@@include('_tpl_PAGE_WRAP.html', { "pageWrap": "END" })
+
+@@include('_tpl_layout_foot.html')

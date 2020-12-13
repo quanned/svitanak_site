@@ -1,0 +1,16 @@
+<!-- >>> foot.tpl <<< -->
+@@if(context.hasFooter !== "false"){
+<!--footer-->
+@@include('_tpl_layout_footer.html')
+<!--footer end-->
+}
+
+<script src="js/jquery.min.js"></script>
+<script src="js/libs.min.js?rev=@@hash"></script>
+<script src="js/common.js?rev=@@hash"></script>
+@@if(context.hasMap){
+<!--Map-->
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
+}
+</body>
+</html>

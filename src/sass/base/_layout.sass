@@ -1,0 +1,1184 @@
+@import ../utils/variables
+@import ../utils/mixins
+@import ../../libs/include-media/dist/include-media
+
+body
+	height: 100%
+	min-width: 320px
+	position: relative
+
+.wrapper
+	margin: 0 auto
+	min-height: 100vh
+	overflow-x: hidden
+	position: relative
+	padding-top: $header-height
+
+	.home-page &
+		padding-top: 0
+
+		+media('<desk-sm')
+			padding-top: $header-height--lg
+
+	+media('<desk-lg')
+		padding-top: $header-height--lg
+
+	&::before, &::after
+		+pseudo()
+		top: 0
+		left: $page-layout-width
+		height: 100%
+		width: 9999px
+		background-color: rgb(250, 250, 250)
+		z-index: 99998
+
+		+media('<1920px')
+			left: 100%
+
+	&::after
+		border-right: 1px solid $border-color
+		width: 0
+
+.main
+	position: relative
+	width: 100%
+	float: left
+	clear: both
+	z-index: 4
+
+.main__holder
+	margin: 0 0 0 #{$sidebar-width}
+	min-height: 50px
+	+clear
+
+	+media('<desk-lg')
+		margin-left: $sidebar-width--lg
+
+	+media('<desk-sm')
+		margin-left: 0
+
+	.home-page &
+		margin: 0 #{$sidebar-width}
+
+		+media('<desk-lg')
+			+margin-horizontal($sidebar-width--lg)
+
+		+media('<desk-sm')
+			+margin-horizontal(0)
+
+.content-wrap
+	float: left
+	width: 100%
+
+.content
+	padding: #{round($layout-spaces*0.9)} #{$layout-spaces}
+
+	+media('<desk-hd')
+		padding: #{round($layout-spaces--hd*0.9)} #{$layout-spaces--hd}
+
+	+media('<desk-lg')
+		padding: #{round($layout-spaces--lg*0.9)} #{$layout-spaces--lg} #{round($layout-spaces--lg*1.5)}
+
+	+media('<desk-sm')
+		padding: #{round($layout-spaces--sm*0.9)} #{$layout-spaces--sm} #{round($layout-spaces--sm*1.5)}
+
+	+media('<mob-lg')
+		padding: #{round($layout-spaces--mob*0.9)} #{$layout-spaces--mob} #{round($layout-spaces--mob*1.5)}
+
+// актуально только для текущего проекта
+.layout-full-width, .layout-wide
+	+margin-horizontal(-#{$layout-spaces})
+
+	+media('<desk-hd')
+		+margin-horizontal(-#{$layout-spaces--hd})
+
+	+media('<desk-lg')
+		+margin-horizontal(-#{$layout-spaces--lg})
+
+	+media('<desk-sm')
+		+margin-horizontal(-#{$layout-spaces--sm})
+
+	+media('<mob-lg')
+		+margin-horizontal(-#{$layout-spaces--mob})
+
+.layout-top-fit
+	margin-top: -#{round($layout-spaces*0.9)}
+
+	+media('<desk-hd')
+		margin-top: -#{round($layout-spaces--hd*0.9)}
+
+	+media('<desk-lg')
+		margin-top: -#{round($layout-spaces--lg*0.9)}
+
+	+media('<desk-sm')
+		margin-top: -#{round($layout-spaces--sm*0.9)}
+
+	+media('<mob-lg')
+		margin-top: -#{round($layout-spaces--mob*0.9)}
+
+.layout-bottom-fit
+	margin-bottom: -#{round($layout-spaces*0.9)}
+
+	+media('<desk-hd')
+		margin-bottom: -#{round($layout-spaces--hd*0.9)}
+
+	+media('<desk-lg')
+		margin-bottom: -#{round($layout-spaces--lg*1.5)}
+
+	+media('<desk-sm')
+		margin-bottom: -#{round($layout-spaces--sm*1.5)}
+
+	+media('<mob-lg')
+		margin-bottom: -#{round($layout-spaces--mob*1.5)}
+
+.entry-img
+	padding: #{round($layout-spaces*0.9)} #{$layout-spaces}
+
+	+media('<desk-hd')
+		padding: #{round($layout-spaces--hd*0.9)} #{$layout-spaces--hd}
+
+	+media('<desk-lg')
+		padding: #{round($layout-spaces--lg*0.9)} #{$layout-spaces--lg}
+
+	+media('<desk-sm')
+		padding: #{round($layout-spaces--sm*0.9)} #{$layout-spaces--sm}
+
+	+media('<mob-lg')
+		padding: #{round($layout-spaces--mob*0.9)} #{$layout-spaces--mob}
+
+/* header (layout)
+.header
+	position: fixed
+	top: 0
+	z-index: 1020
+	height: $header-height
+	width: 100%
+	@if $page-layout-width
+		max-width: #{$page-layout-width}
+	@else
+		max-width: 100%
+
+	+media('<desk-lg')
+		height: $header-height--lg
+
+.header__holder
+	+padding-horizontal($layout-spaces)
+	margin-left: $logo-width
+
+	+media('<desk-hd')
+		+padding-horizontal($layout-spaces--hd)
+
+	+media('<desk-lg')
+		+padding-horizontal($layout-spaces--lg)
+		margin-left: $logo-width--lg
+
+	+media('<desk-sm')
+		+padding-horizontal($layout-spaces--sm)
+		margin-left: 0
+
+	+media('<mob-lg')
+		+padding-horizontal($layout-spaces--mob)
+
+.home-page .header__holder
+	+padding-horizontal($layout-spaces, $sidebar-width)
+	margin-left: $logo-width
+
+	+media('<desk-hd')
+		+padding-horizontal($layout-spaces--hd, $sidebar-width)
+
+	+media('<desk-lg')
+		+padding-horizontal($layout-spaces--lg, $sidebar-width--lg)
+		margin-left: $logo-width--lg
+
+	+media('<desk-sm')
+		+padding-horizontal($layout-spaces--sm)
+		margin-left: 0
+
+	+media('<mob-lg')
+		+padding-horizontal($layout-spaces--mob)
+
+/* header (layout) end
+
+/* sidebar (layout)
+.sidebar
+	position: fixed
+	top: $header-height
+	left: 0
+	+size($sidebar-width, calc(100% - #{$header-height}))
+	z-index: 1001
+
+	+media('<desk-lg')
+		top: $header-height--lg
+		+size($sidebar-width--lg, calc(100% - #{$header-height--lg}))
+
+	+media('<desk-sm')
+		display: none
+
+.sidebar__align
+	width: calc(100% + 100px)
+	background-color: inherit
+
+	.touchevents &
+		width: 100%
+
+.sidebar__holder
+	position: relative
+	width: $sidebar-width
+
+	+media('<desk-lg')
+		width: $sidebar-width--lg
+
+/* sidebar (layout) end
+
+/* footer (layout)
+.footer
+	position: relative
+	clear: both
+	z-index: 5
+
+.footer__holder
+	$base-width: calc(100% - #{$sidebar-width})
+	$base-width--lg: calc(100% - #{$sidebar-width--lg})
+
+	&
+		left: $sidebar-width
+		width: $base-width
+		+padding-horizontal($layout-spaces)
+
+		+media('<desk-hd')
+			+padding-horizontal($layout-spaces--hd)
+
+		+media('<desk-lg')
+			+padding-horizontal($layout-spaces--lg)
+			left: $sidebar-width--lg
+			width: $base-width--lg
+
+		+media('<desk-sm')
+			+padding-horizontal($layout-spaces--sm)
+			left: 0
+			width: 100%
+
+		+media('<desk-sm')
+			+padding-horizontal($layout-spaces--mob)
+
+.footer-common, .footer-bottom
+	+padding-vertical(round($layout-spaces*0.5))
+
+	+media('<desk-hd')
+		+padding-vertical(round($layout-spaces--hd*0.55))
+
+	+media('<desk-lg')
+		+padding-vertical(round($layout-spaces--lg*0.85))
+
+	+media('<desk-sm')
+		+padding-vertical(round($layout-spaces--sm*0.85))
+
+	+media('<mob-lg')
+		+padding-vertical(round($layout-spaces--mob*1.2))
+
+/* footer (layout) end
+
+.max-wrap
+	@if $page-layout-width
+		max-width: $page-layout-width + $page-layout-space-horizontal*2
+
+.layout
+	//+push-auto
+	@if $page-layout-space-horizontal != 0
+		+padding-horizontal($page-layout-space-horizontal)
+
+	//+media('<tab-lg')
+		.main &
+			+padding-horizontal(0)
+
+// максимальная ширина текстовых элементов на внутренней (текстовой) странице
+.max-wrap-text
+	max-width: #{$text-layout-width}
+	//max-width: #{$text-layout-width + $text-layout-space-horizontal*2}
+	//max-width: #{$text-layout-width + $text-layout-space-horizontal*2 + $text-layout-indent}
+
+	//+media('<desk-lg')
+		max-width: #{$text-layout-width}
+		//max-width: #{$text-layout-width + $text-layout-space-horizontal--lg*2}
+
+	//+media('<tab-lg')
+		//max-width: #{$text-layout-width + $text-layout-space-horizontal--md*2}
+		max-width: #{$text-layout-width + $text-layout-indent}
+
+	//+media('<mob-lg')
+		max-width: #{$text-layout-width}
+		//max-width: #{$text-layout-width + $text-layout-space-horizontal--sm*2}
+		//max-width: #{$text-layout-width + $text-layout-indent}
+
+// выравнивание текстовых элементов на внутренней (текстовой) странице
+// и их максимальная ширина
+.layout-text
+	//max-width: #{$text-layout-width + $text-layout-space-horizontal*2 + $text-layout-indent}
+	//+padding-horizontal(#{$text-layout-indent + $text-layout-space-horizontal}, $text-layout-space-horizontal)
+	//max-width: #{$text-layout-width + $text-layout-space-horizontal*2}
+	//+padding-horizontal($text-layout-space-horizontal)
+	max-width: $text-layout-width
+	+push-auto
+
+	+media('<tab-lg')
+		max-width: none
+
+//+media('<desk-lg')
+	max-width: #{$text-layout-width + $text-layout-space-horizontal--lg*2}
+	+padding-horizontal($text-layout-space-horizontal--lg)
+
+	//+media('<tab-lg')
+		max-width: #{$text-layout-width + $text-layout-space-horizontal--md*2}
+		+padding-horizontal($text-layout-space-horizontal--md)
+
+	//+media('<mob-lg')
+		max-width: #{$text-layout-width + $text-layout-space-horizontal--sm*2}
+		+padding-horizontal($text-layout-space-horizontal--sm)
+
+// максимальная ширина альтернативных элементов на внутренней (текстовой) странице
+.max-wrap-flood
+	//max-width: #{$flood-layout-width + $text-layout-space-horizontal*2}
+	//max-width: #{$flood-layout-width + $text-layout-space-horizontal*2 + $text-layout-indent}
+	max-width: $flood-layout-width
+
+	+media('<desk-md')
+		max-width: none
+
+	//+media('<desk-lg')
+		max-width: #{$flood-layout-width + $text-layout-space-horizontal--lg*2}
+
+	//+media('<tab-lg')
+		max-width: #{$flood-layout-width + $text-layout-space-horizontal--md*2}
+
+	//+media('<mob-lg')
+		max-width: #{$flood-layout-width + $text-layout-space-horizontal--sm*2}
+
+// выравнивание альтернативных элементов на внутренней (текстовой) странице
+// и их максимальная ширина
+.layout-flood
+	//max-width: #{$flood-layout-width + $text-layout-space-horizontal*2 + $text-layout-indent}
+	//+padding-horizontal(#{$text-layout-indent + $text-layout-space-horizontal}, $text-layout-space-horizontal)
+	//max-width: #{$flood-layout-width + $text-layout-space-horizontal*2}
+	//+padding-horizontal($text-layout-space-horizontal)
+	max-width: #{$flood-layout-width}
+	+push-auto
+
+	+media('<desk-md')
+		max-width: none
+
+	//+media('<desk-lg')
+		max-width: #{$flood-layout-width + $text-layout-space-horizontal--lg*2}
+		+padding-horizontal($text-layout-space-horizontal--lg)
+
+	//+media('<tab-lg')
+		max-width: #{$flood-layout-width + $text-layout-space-horizontal--md*2}
+		+padding-horizontal($text-layout-space-horizontal--md)
+
+	//+media('<mob-lg')
+		max-width: #{$flood-layout-width + $text-layout-space-horizontal--sm*2}
+		+padding-horizontal($text-layout-space-horizontal--sm)
+
+	p, ul, ol, h1, h2, h3, h4, h5, h6, hr, blockquote
+		max-width: none
+
+// элеметы с отступами по бокам
+.layout-wide
+	//+padding-horizontal($text-layout-space-horizontal)
+	+padding-horizontal($layout-spaces)
+
+	+media('<desk-hd')
+		+padding-horizontal($layout-spaces--hd)
+
+	+media('<desk-lg')
+		+padding-horizontal($layout-spaces--lg)
+
+	//+media('<tab-lg')
+		+padding-horizontal($text-layout-space-horizontal--md)
+
+	//+media('<mob-lg')
+	+media('<desk-sm')
+		+padding-horizontal($layout-spaces--sm)
+
+	+media('<mob-lg')
+		+padding-horizontal($layout-spaces--mob)
+
+	p, ul, ol, h1, h2, h3, h4, h5, h6, hr, blockquote
+		max-width: none
+
+// элеметы без отступов по бокам
+.layout-full-width
+	p, ul, ol, h1, h2, h3, h4, h5, h6, hr, blockquote
+		max-width: none
+
+// выравнивание текстовых элементов на странице статьи (контент обернут в .layout-article)
+// и их максимальная ширина
+.layout-article
+	//padding: round($text-layout-space-horizontal) #{$text-layout-space-horizontal} round($text-layout-space-horizontal*1.5)
+
+	//+media('<tab-lg')
+		padding: round($text-layout-space-horizontal--md*1.5) #{$text-layout-space-horizontal--md} round($text-layout-space-horizontal--md*2)
+
+	//+media('<tab-sm')
+		padding: round($text-layout-space-horizontal--sm*1.5) #{$text-layout-space-horizontal--sm} round($text-layout-space-horizontal--sm*2)
+
+	& > p, & > ul, & > ol, & > h1, & > h2, & > h3, & > h4, & > h5, & > h6, & > hr, & > blockquote, & > .layout-text, .imgc figcaption
+		//max-width: $text-layout-width + $text-layout-indent
+		//+padding-horizontal($text-layout-indent, 0)
+		max-width: $text-layout-width
+		+padding-horizontal(0)
+		+push-auto
+
+		+media('<tab-lg')
+			max-width: none
+
+	& > h1, & > img, .imgc
+		display: block
+		max-width: $flood-layout-width
+		+push-auto
+
+	& > img, .imgc
+		+margin-vertical(0, $bottom-space--lg)
+
+	.layout-text, .layout-flood
+		+padding-horizontal(0)
+		+push-auto
+
+	.layout-text
+		max-width: $text-layout-width
+
+		+media('<tab-lg')
+			max-width: none
+
+	.max-wrap-text
+		max-width: $text-layout-width
+
+		+media('<tab-lg')
+			max-width: none
+
+	//& .pagination
+		max-width: $text-layout-width
+		+push-auto
+
+	.layout-flood
+		//max-width: $flood-layout-width + $text-layout-indent
+		//+padding-horizontal($text-layout-indent, 0)
+		max-width: $flood-layout-width
+
+		+media('<desk-md')
+			max-width: none
+
+	.max-wrap-flood
+		max-width: $flood-layout-width
+
+		+media('<desk-md')
+			max-width: none
+
+	// элеметы без отступов по бокам
+	// минусовые маржины по горизонтале имеют значение только внутри .layout-article
+	// и если у .layout-article есть горизонтальные отступы
+	//.layout-full-width, .layout-wide
+
+		//+margin-horizontal(-#{$text-layout-space-horizontal})
+
+		//+media('<desk-lg')
+			+margin-horizontal(-#{$text-layout-space-horizontal--lg})
+
+		//+media('<tab-lg')
+			+margin-horizontal(-#{$text-layout-space-horizontal--md})
+
+		//+media('<mob-lg')
+			+margin-horizontal(-#{$text-layout-space-horizontal--sm})
+
+/* logo (layout)
+.logo
+	width: $logo-width
+	height: $header-height
+
+	+media('<desk-lg')
+		width: $logo-width--lg
+		height: $header-height--lg
+
+	+media('<desk-sm')
+		margin: 0 auto
+		width: $logo-full-width--lg
+
+	+media('<tab-sm')
+		margin: 0 0 0 #{$header-height--lg - 10}
+
+	// home-page
+	.home-page &
+		width: $logo-full-width
+
+		+media('<desk-lg')
+			width: $logo-full-width--lg
+
+		//+media('<mob-lg')
+			width: $logo-full-width--sm
+
+		//+media('<mob-md')
+			width: $logo-full-width--mob
+
+// header if has large logo
+.home-page
+	.header__holder
+		padding-left: $layout-spaces + $logo-full-width - $logo-width
+
+		+media('<desk-hd')
+			padding-left: $layout-spaces--hd + $logo-full-width - $logo-width
+
+		+media('<desk-lg')
+			padding-left: $layout-spaces--lg + $logo-full-width--lg - $logo-width--lg
+
+		+media('<desk-sm')
+			padding-left: $layout-spaces--sm
+
+		+media('<mob-lg')
+			padding-left: $layout-spaces--mob
+
+/* logo (layout) end
+
+/* button toggle menu (layout)
+.btn-menu
+	+size($sidebar-width)
+
+	+media('<desk-lg')
+		+size($sidebar-width--lg)
+
+/* button toggle menu (layout) end
+
+/* fullpage navigation / fp-nav (layout)
+#fp-nav
+	height: 100vh
+	width: $sidebar-width
+	top: 0
+	left: $page-layout-width
+	margin: 0 0 0 -#{$sidebar-width} !important
+	padding-top: $header-height
+
+	+media('<1920px')
+		left: 100%
+
+	+media('<desk-lg')
+		width: $sidebar-width--lg
+		margin: 0 0 0 -#{$sidebar-width--lg} !important
+		padding-top: $header-height--lg
+
+/* fullpage navigation / fp-nav (layout) end
+
+.nav-bottom
+	padding-bottom: 80px
+
+	//+media('<desk-hd')
+		padding-bottom: #{round($layout-spaces--hd*0.9)}
+
+	+media('<desk-lg')
+		padding-bottom: 60px
+
+	+media('<desk-sm')
+		padding-bottom: 50px
+
+	+media('<mob-lg')
+		padding-bottom: 40px
+
+	/* tape slider (layout)
+	.tape-slider-pagination
+		top: auto
+		bottom: 0
+
+	.tape-slider-prev, .tape-slider-next
+		bottom: 0
+		top: auto
+		margin-top: 0
+
+	.tape-slider-prev
+		left: 0
+
+	.tape-slider-next
+		right: 0
+	/* tape slider (layout) end
+
+/* catalog - m-catalog (layout)
+.m-catalog-list,
+	&, .#{$user-content} .m-catalog-list
+		& > li
+			padding: nth($m-catalog__space, 1) nth($m-catalog__space, 2)
+
+			+media('<desk-hd')
+				padding: #{round($layout-spaces--hd*0.9)} #{$layout-spaces--hd}
+
+			+media('<desk-lg')
+				padding: #{round($layout-spaces--lg*0.9)} #{$layout-spaces--lg}
+
+			+media('<desk-sm')
+				padding: #{round($layout-spaces--sm*0.9)} #{$layout-spaces--sm}
+
+			+media('<mob-lg')
+				padding: #{round($layout-spaces--mob*1.5)} #{$layout-spaces--mob}
+
+/* catalog - m-catalog (layout) end
+
+/* m-services (layout)
+.m-services-thumbs-align
+	+padding-vertical($layout-spaces)
+
+	+media('<desk-hd')
+		+padding-vertical($layout-spaces--hd)
+
+	+media('<desk-lg')
+		+padding-vertical($layout-spaces--lg)
+
+	+media('<desk-sm')
+		+padding-vertical($layout-spaces--sm)
+
+	+media('<tab-lg')
+		padding: #{round($layout-spaces--sm*0.9)} $layout-spaces--sm
+
+	+media('<mob-lg')
+		padding: #{round($layout-spaces--mob*1.5)} $layout-spaces--mob $layout-spaces--mob
+
+/* m-services (layout) end
+
+/* home-page (layout)
+.main-section
+	height: 100vh
+	padding-top: $header-height
+
+	+media('<desk-lg')
+		padding-top: $header-height--lg
+
+	+media('<desk-sm')
+		padding-top: 0
+
+.home-page
+	/* main slider (layout)
+	.main-slider-pagination
+		left: #{$layout-spaces}
+		top: #{round($layout-spaces*0.9)}
+
+		+media('<desk-hd')
+			left: #{$layout-spaces--hd}
+			top: #{round($layout-spaces--hd*0.9)}
+
+		+media('<desk-lg')
+			left: #{$layout-spaces--lg}
+			top: #{round($layout-spaces--lg*0.9)}
+
+		+media('<desk-sm')
+			left: #{$layout-spaces--sm}
+			top: #{round($layout-spaces--sm*0.9)}
+
+		+media('<mob-lg')
+			left: 50%
+			top: auto
+			bottom: #{round($layout-spaces--mob*0.9)}
+
+	.main-slider-prev, .main-slider-next
+		bottom: #{round($layout-spaces*0.9)}
+		top: auto
+		margin-top: 0
+
+		+media('<desk-hd')
+			bottom: #{round($layout-spaces--hd*0.9)}
+
+		//+media('<desk-lg')
+			bottom: #{round($layout-spaces--lg*0.9)}
+
+		+media('<desk-sm')
+			bottom: 45px
+
+		+media('<mob-lg')
+			bottom: #{round($layout-spaces--mob*0.9)}
+
+	.main-slider-prev
+		left: #{$layout-spaces}
+
+		+media('<desk-hd')
+			left: #{$layout-spaces--hd}
+
+		+media('<desk-lg')
+			left: #{$layout-spaces--lg}
+
+		+media('<desk-sm')
+			left: #{$layout-spaces--sm}
+
+		+media('<mob-lg')
+			left: #{$layout-spaces--mob}
+
+	.main-slider-next
+		right: #{$layout-spaces}
+
+		+media('<desk-hd')
+			right: #{$layout-spaces--hd}
+
+		+media('<desk-lg')
+			right: #{$layout-spaces--lg}
+
+		+media('<desk-sm')
+			right: #{$layout-spaces--sm}
+
+		+media('<mob-lg')
+			right: #{$layout-spaces--mob}
+
+	.main-slider__item
+		padding: #{round($layout-spaces*0.9*2)} #{$layout-spaces} 38px
+
+		+media('<desk-hd')
+			padding: #{round($layout-spaces--hd*0.9*2)} #{$layout-spaces--hd} 38px
+
+		+media('<desk-lg')
+			padding: #{round($layout-spaces--lg*0.9*2.5)} #{$layout-spaces--lg} 38px
+
+		+media('<desk-sm')
+			padding: #{round($layout-spaces--sm*0.9*2.5)} #{$layout-spaces--sm} 30px
+
+		+media('<mob-lg')
+			padding: #{$layout-spaces--mob} #{$layout-spaces--mob} 0
+
+	/* main slider (layout) end
+
+	.nav-bottom
+		padding-bottom: #{round($layout-spaces*1.8)}
+
+		+media('<desk-hd')
+			padding-bottom: #{round($layout-spaces--hd*1.8)}
+
+		+media('<desk-lg')
+			padding-bottom: #{round($layout-spaces--lg*1.8)}
+
+		+media('<desk-sm')
+			padding-bottom: 100px
+
+		+media('<mob-md')
+			padding-bottom: 60px
+
+		/* tape slider (layout)
+		.tape-slider-pagination, .tape-slider-prev, .tape-slider-next
+			bottom: #{round($layout-spaces*0.9)}
+
+			+media('<desk-hd')
+				bottom: #{round($layout-spaces--hd*0.9)}
+
+			+media('<desk-lg')
+				bottom: #{round($layout-spaces--lg*0.9)}
+
+			+media('<desk-sm')
+				bottom: #{round($layout-spaces--sm*0.9)}
+
+			+media('<mob-lg')
+				bottom: #{round($layout-spaces--mob*0.9)}
+
+		.tape-slider-prev
+			left: #{$layout-spaces}
+
+			+media('<desk-hd')
+				left: #{$layout-spaces--hd}
+
+			+media('<desk-lg')
+				left: #{$layout-spaces--lg}
+
+			+media('<desk-sm')
+				left: #{$layout-spaces--sm}
+
+			+media('<mob-lg')
+				left: #{$layout-spaces--mob}
+
+		.tape-slider-next
+			right: #{$layout-spaces}
+
+			+media('<desk-hd')
+				right: #{$layout-spaces--hd}
+
+			+media('<desk-lg')
+				right: #{$layout-spaces--lg}
+
+			+media('<desk-sm')
+				right: #{$layout-spaces--sm}
+
+			+media('<mob-lg')
+				right: #{$layout-spaces--mob}
+
+		/* tape slider (layout) end
+
+	/* previews tabs (layout)
+	.previews-tabs__panel
+		//padding-top: $previews-tabs-top-space
+		padding-top: $previews-tab-line-height + round($layout-spaces*0.9*2)
+
+		+media('<desk-hd')
+			padding-top: $previews-tab-line-height + round($layout-spaces--hd*0.9*2)
+
+		+media('<desk-lg')
+			padding-top: $previews-tab-line-height + round($layout-spaces--lg*0.9*2)
+
+		+media('<desk-sm')
+			//padding-top: $previews-tab-line-height + round($layout-spaces--sm*0.9*2)
+			padding-top: 0
+
+	.previews-tabs__nav
+		padding: #{round($layout-spaces*0.9)} #{$layout-spaces}
+
+		+media('<desk-hd')
+			padding: #{round($layout-spaces--hd*0.9)} #{$layout-spaces--hd}
+
+		+media('<desk-lg')
+			padding: #{round($layout-spaces--lg*0.9)} #{$layout-spaces--lg}
+
+		+media('<desk-sm')
+			padding: #{round($layout-spaces--sm*0.9)} #{$layout-spaces--sm}
+
+		+media('<mob-lg')
+			padding: #{round($layout-spaces--mob*0.9)} #{$layout-spaces--mob} #{round($layout-spaces--mob*1.5)}
+
+	/* previews tabs (layout) end
+
+/* feature list, images slider
+.feature-list, .images-slider
+	max-width: $flood-layout-width
+	+push-auto
+
+	&:last-child
+		margin-bottom: 0
+
+.feature-list
+	margin-bottom: $bottom-space--lg
+
+	+media('<tab-lg')
+		margin-bottom: $bottom-space--ml
+
+.images-slider
+	//margin-bottom: $bottom-space--lg*2
+	margin-bottom: $bottom-space--lg
+
+	+media('<tab-lg')
+		//margin-bottom: $bottom-space--ml*2
+		margin-bottom: $bottom-space--ml
+
+	&:last-child
+		margin-bottom: 0
+
+/* feature list, images slider end
+
+/* subscription form
+.subscription-form
+	padding: $layout-spaces
+
+	+media('<desk-hd')
+		padding: $layout-spaces--hd
+
+	+media('<desk-lg')
+		padding: $layout-spaces--lg
+
+	+media('<desk-sm')
+		padding: $layout-spaces--sm
+
+	+media('<mob-lg')
+		padding: $layout-spaces--mob
+
+	.article-footer + &
+		padding-top: 145px
+
+/* subscription form end
+
+/* footer at bottom
+.spacer
+	.wrapper > &
+		display: none
+
+	.home-page .main &
+		display: none
+
+/* footer at bottom end
+
+/* box options (layout)
+.box-options__label
+	width: $aside-width
+	padding-right: $layout-spaces
+	margin-top: -0.4em
+
+	+media('<desk-hd')
+		padding-right: $layout-spaces--hd
+
+	+media('<desk-lg')
+		padding-right: $layout-spaces--lg
+
+	+media('<desk-md')
+		width: $aside-width--sm
+
+	+media('<desk-sm')
+		padding-right: $layout-spaces--sm
+
+	+media('<mob-lg')
+		padding-right: $layout-spaces--mob
+
+.box-options__content
+	margin-left: $aside-width
+
+	+media('<desk-md')
+		margin-left: 0
+
+/* box options (layout) end
+
+/* m-container (layout)
+.m-container
+	+clear
+
+.m-aside
+	float: left
+	width: $aside-width
+	// for sticky-sidebar js
+	will-change: min-height, trasform
+
+	+media('<desk-md')
+		width: $aside-width--sm
+
+	+media('>=tab-lg')
+		//&
+			transform: translate(0, 0) matrix(1, 0, 0, 1, 0, 0) !important
+		&
+			transform: none !important
+
+		@at-root .shutter-overlay--m-aside
+			display: none
+
+	+media('<tab-lg')
+		opacity: 0
+		visibility: hidden
+		position: fixed
+		overflow: hidden
+		right: 0
+		width: $aside-width
+		background-color: white
+		z-index: 9999
+
+		top: $header-height--lg
+		height: calc(100vh - #{$header-height--lg})
+
+		transform: matrix(1, 0, 0, 1, 0, 0)
+
+	+media('<mob-md')
+		width: 100%
+
+	form
+		height: 100%
+
+.m-aside-layout
+	height: 100%
+	// for sticky-sidebar js
+	transform: translate(0, 0) /* For browsers don't support translate3d. */
+	transform: translate3d(0, 0, 0)
+	will-change: position, transform
+
+.m-aside-align
+	+media('<tab-lg')
+		overflow-x: hidden
+		overflow-y: auto
+		//height: 100%
+		height: calc(100% - #{$header-height--lg}) // если есть футер (с элементами управления)
+
+		.m-aside-options ~ &
+			height: calc(100% - #{$header-height--lg*2}) // если есть шапка (с элементами управления)
+
+.m-aside-holder
+	padding-right: $layout-spaces
+
+	+media('<desk-hd')
+		padding-right: $layout-spaces--hd
+
+	+media('<desk-lg')
+		padding-right: $layout-spaces--lg
+
+	+media('<desk-sm')
+		padding-right: $layout-spaces--sm
+
+	+media('<tab-lg')
+		padding: $layout-spaces--sm
+
+	+media('<mob-lg')
+		padding: $layout-spaces--mob $layout-spaces--mob round($layout-spaces--mob*1.5)
+
+.m-aside-options
+	position: relative
+
+	+media('<tab-lg')
+		display: flex
+		height: $header-height--lg
+		z-index: 20
+
+	.btn-filters-apply
+		+media('<tab-lg')
+			display: block
+			//width: calc(100% - #{$header-height--lg})
+			//flex: 1 calc(100% - #{$header-height--lg})
+			flex: 1 1
+			height: $header-height--lg
+			padding: 21px 5px 21px calc(5px + #{$letter-spacing})
+
+.m-aside-footer
+	padding-top: 4rem
+	padding-right: $layout-spaces
+	position: relative
+	line-height: 1
+
+	+media('<desk-hd')
+		padding-right: $layout-spaces--hd
+
+	+media('<desk-lg')
+		padding-right: $layout-spaces--lg
+
+	+media('<desk-sm')
+		padding-right: $layout-spaces--sm
+
+	+media('<tab-lg')
+		display: flex
+		padding: 0
+		height: $header-height--lg
+		box-shadow: 0 0 30px 10px #fff, inset 0 1px 0 $border-color
+		overflow-y: hidden
+		z-index: 20
+
+	.btn-filters-apply, .btn-clear-filters, .btn-clear-form
+		+media('<tab-lg')
+			display: block
+			//width: calc(50% - #{$header-height--lg})
+			//flex: 1 calc(50% - #{$header-height--lg})
+			flex: 1 1
+			height: $header-height--lg
+			padding: 21px 5px 21px calc(5px + #{$letter-spacing})
+
+	.btn-filters-apply
+		display: none
+		background-color: $btn-bg-hover-color
+		border: none
+
+		+media('<tab-lg')
+			display: block
+
+	.btn-clear-filters, .btn-clear-form
+		+media('<tab-lg')
+			border: none
+			background-color: $btn-bg-color
+			color: #fff
+
+		// disabled
+		&:disabled, &.disabled, &[data-disabled]
+			+media('<tab-lg')
+				cursor: default
+				background-color: #eaeaea !important
+
+				&::before, &::after
+					display: none
+
+		.for-mob
+			display: none
+
+			+media('<tab-lg')
+				display: inline-block
+				padding-left: 0
+
+		.for-desk
+			+media('<tab-lg')
+				display: none
+
+		svg
+			+media('<tab-lg')
+				display: none
+
+	.btn-shutter-close
+		display: none
+
+		+media('<tab-lg')
+			z-index: 20
+			display: block
+			flex: 0 0 #{$header-height--lg}
+
+.m-content
+	margin-left: $aside-width
+	+clear
+
+	+media('<desk-md')
+		margin-left: $aside-width--sm
+
+	+media('<tab-lg')
+		margin-left: 0
+
+.m-content__holder
+	float: left
+	width: 100%
+
+/* m-container (layout) end
+
+/* filters tags (layout)
+.p-filters-tags.is-affixed
+	// for sticky-sidebar js
+	z-index: 5
+
+.p-filters-tags__holder
+	padding-left: $aside-width
+
+	+media('<desk-md')
+		padding-left: $aside-width--sm
+
+	+media('<tab-lg')
+		padding-left: 0
+
+	.m-content &
+		padding-left: 0
+
+/* filters tags (layout) end
+
+/* news-preview (layout)
+//.news-preview
+	max-width: $flood-layout-width
+
+/* news-preview(layout) end
+
+/* user-form (layout)
+.user-form
+	&, .layout-article &
+		padding: $text-layout-space-horizontal*2 $text-layout-space-horizontal
+
+		+media('<desk-lg')
+			padding: $layout-spaces--lg
+
+		+media('<desk-sm')
+			padding: $layout-spaces--sm
+
+		+media('<mob-lg')
+			padding: $layout-spaces--mob
+
+/* user-form (layout) end
+
+/* shutter (layout)
+/* shutter (layout) end
+
+/* contacts (layout) end
+
+/* product card (layout)
+.p-card__visual
+	margin-top: -#{$header-height + round($layout-spaces*0.9)}
+
+	+media('<desk-hd')
+		margin-top: -#{$header-height + round($layout-spaces--hd*0.9)}
+
+	+media('<desk-lg')
+		margin-top: -#{$header-height--lg + round($layout-spaces--lg*0.9)}
+
+	+media('<desk-sm')
+		margin-top: -#{$header-height--lg + round($layout-spaces--sm*0.9)}
+
+	+media('<tab-lg')
+		margin-top: 0
+
+	//+media('<mob-lg')
+		margin-top: -#{$header-height--lg + round($layout-spaces--mob*0.9)}
+
+.p-card__gallery__item
+	padding-top: $header-height
+
+	+media('<desk-lg')
+		padding-top: $header-height--lg
+
+	+media('<tab-lg')
+		padding-top: 0
+
+/* product card (layout) end

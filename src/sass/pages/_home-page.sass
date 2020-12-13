@@ -1,0 +1,171 @@
+@import ../utils/variables
+@import ../utils/mixins
+@import ../../libs/include-media/dist/include-media
+
+/* HOME PAGE
+/*scroll sections
+.main-section-js
+	position: relative
+	overflow: hidden
+	// has style on layout.sass
+
+.main-section__container
+	height: 100%
+
+.main-section__align
+	//max-width: 640px
+	height: 100%
+	margin: 0 auto
+
+/*scroll sections end
+
+.main-section--main
+	+media('<desk-sm')
+		height: calc(100vh - #{$header-height--lg}) !important
+		min-height: 480px
+
+	+media('<mob-lg')
+		height: inherit !important
+		min-height: 0
+
+.main-section--footer
+	height: auto !important
+	padding-top: 0
+	background-color: #fafafa
+
+.main-section--categories
+
+	+media('<desk-sm')
+		height: auto !important
+
+	.main-section__align
+		overflow: hidden
+
+.main-section--services
+	+media('<desk-sm')
+		border-bottom: 1px solid $border-color
+		height: calc(100vh - #{$header-height--lg} + 1px) !important
+
+	+media('<tab-lg')
+		height: auto !important
+		background-color: $bg-color-alt
+
+.main-section--news
+	+media('<desk-sm')
+		height: auto !important
+
+/* main section
+
+/* main section end
+
+/* fullpage navigation
+#fp-nav
+	display: table
+	position: fixed
+	background-color: rgba($bg-color, 0.5)
+	border: solid $border-color
+	border-width: 0 0 0 1px
+
+	ul
+		$dot-size: 8px
+		$dot-size-active: 20px
+		$dot-space: 50px
+
+		display: table-cell
+		vertical-align: middle
+		text-align: center
+
+		li
+			+size(auto)
+			line-height: $dot-size
+			margin: 0
+			//padding: round($dot-space/2 - ($dot-size-active - $dot-size)/2) 0
+			padding: 0
+
+			&:last-child
+				display: none
+
+			a
+				display: block
+				padding: round($dot-space/2) 10px
+				line-height: 0.1
+
+				&::before
+					+pseudo()
+					+size(#{$dot-size-active})
+					+position(50%)
+					margin: -#{round($dot-size-active/2)} 0 0 -#{round($dot-size-active/2)}
+					border: 1px solid $base-color
+					border-radius: 50%
+					opacity: 0
+					transform: scale(0, 0) translateZ(0)
+					transition:
+						property: transform, opacity
+						duration: $animation-speed
+
+				span
+					+display-inline-block-top
+					position: relative
+					+size($dot-size)
+					+position(0)
+					margin: 0
+					background-color: $text-color
+					@if $animation-use
+						transition: none
+
+				&:hover
+					span
+						background-color: $base-color
+
+				&.active
+					&::before
+						transform: scale(1, 1) translateZ(0)
+						opacity: 1
+
+					span
+						margin: 0
+						+size($dot-size)
+						background-color: $base-color
+
+			&:hover
+				a
+					&, &.active
+						span
+							+size($dot-size)
+							margin: 0
+
+/* fullpage navigation end
+
+/* Styled scrollbars
+.iScrollVerticalScrollbar
+	position: absolute
+	z-index: 9999
+	width: 8px
+	bottom: 2px
+	top: 2px
+	right: 2px
+	overflow: hidden
+
+.iScrollVerticalScrollbar.iScrollBothScrollbars
+	bottom: 18px
+
+.iScrollIndicator
+	position: absolute
+	background: $base-color
+	border-radius: 0
+	width: 100%
+
+/* special styles for home page
+.home-page
+	// footer
+	.footer__holder
+		position: relative
+		top: auto
+		right: auto
+		bottom: auto
+		left: auto
+		width: auto
+		border-top: 0
+
+/* special styles for home page end
+/* HOME PAGE end

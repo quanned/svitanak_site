@@ -1,0 +1,153 @@
+@import ../utils/variables
+@import ../utils/mixins
+@import ../../libs/include-media/dist/include-media
+
+/* SLIDERS
+/* images slider
+.images-slider
+	position: relative
+	border: 1px solid $border-color
+
+.images-slider__list, .slick-dotted.images-slider__list
+	padding-bottom: 0
+	margin-bottom: 0
+	position: relative
+	z-index: 2
+
+.images-slider__item
+	position: relative
+	overflow: hidden
+	float: none
+	+display-inline-block-top
+	white-space: normal
+	//background: #494949
+	opacity: 0
+
+	.slick-initialized &
+		display: block
+		float: left
+		opacity: 1
+
+	.no-js &
+		display: block
+		width: 100%
+		opacity: 1
+
+	//&::before
+		content: ''
+		display: block
+		height: 0
+		padding-top: 62.5%
+
+	//img
+		position: absolute
+		+position(0)
+		text-align: center
+		max-width: none
+		width: 100%
+		height: 100%
+		+object-fit(contain)
+
+	img
+		margin: 0 auto
+
+.images-slider
+
+	.slick-arrow
+		right: auto
+		left: auto
+		top: auto
+		//top: 100%
+		bottom: 0
+		transform: translate(0, 0)
+		//margin-top: -#{round($slider-arrow-size/2)}
+		margin: 17px
+		//margin-top: 4px
+		//+margin-horizontal(-110px)
+
+	.slick-prev
+		left: 0
+		//left: 50%
+
+	.slick-next
+		right: 0
+		//right: 50%
+
+	// slider counter
+	.slider-counter
+		//$sc-size: 256px, 86px
+		$sc-size: auto, 86px
+
+		//position: absolute
+		position: relative
+		//+position(100%, 50%)
+		padding: 34px 0 0
+		+size(nth($sc-size, 1), nth($sc-size, 2))
+		//margin: -#{round(nth($sc-size, 2)/2)} 0 0 -#{round(nth($sc-size, 1)/2)}
+		//margin: -15px 0 0 -#{round(nth($sc-size, 1)/2)}
+		+font-alt
+		+font(24px, 1)
+		color: $text-color
+		text-align: center
+		background-color: $bg-color-base
+		border: 0 solid $border-color
+		border-width: 1px 0 0
+
+		&::before, &::after
+			content: ''
+			display: block
+			position: absolute
+			top: 50%
+			//+position(50%)
+			+size(0, 30px)
+			margin: -15px 88px
+			border-left: 1px solid $border-color
+
+		&::before
+			left: 0
+			//margin-left: -42px
+
+		&::after
+			right: 0
+			//margin-left: 42px
+
+		.slide-curr
+			color: $base-color
+			padding-right: 5px
+
+		.slide-total
+			padding-left: 5px
+
+	.slick-dots, .#{$user-content} & .slick-dots
+		position: absolute
+		bottom: $bottom-space + 1
+
+		li
+			+padding-horizontal(7px)
+
+			button
+				width: 6px
+				height: 6px
+				border-radius: 50%
+				background-color: white
+				opacity: 0.5
+
+				@if $animation-use
+					transition:
+						property: opacity, transform
+						duration: $animation-speed
+				@else
+					transition: none
+
+				&::before
+					content: none
+
+			&.slick-active button
+				opacity: 1
+
+			.no-touchevents &:hover button
+				opacity: 1
+				transform: scale(2)
+
+/* images slider end
+/* SLIDERS end

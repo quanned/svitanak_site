@@ -1,0 +1,86 @@
+@@if (context.inCart) {
+	@@if (context.src) {
+	<article class="products__item in-cart">
+	}
+	@@if (!context.src) {
+	<article class="products__item in-cart no-image">
+	}
+}
+@@if (!context.inCart) {
+	@@if (context.src) {
+	<article class="products__item">
+	}
+	@@if (!context.src) {
+	<article class="products__item no-image">
+	}
+}
+	<div class="products__inner">
+		<div class="products__brand">
+			@@if (context.brand) {
+			<img src="img/@@brand" alt="Бренд" />
+			}
+		</div>
+		<a href="product-card.html">
+			<div class="products__visual">
+				<div class="products__new">&nbsp;</div>
+				<div class="products__figure">
+					<div class="products__img">
+						@@if (context.src) {
+						<img src="img/@@src" alt="@@title" />
+						}
+					</div>
+				</div>
+			</div>
+			<div class="products__title"><span>@@title</span> <em class="products__model">@@ch.Модель</em></div>
+		</a>
+
+		<div class="products__content">
+			<div class="products__dl">
+				@@if (context.ch) {
+					@@for (var key in ch) {
+					<div class="products__di">
+						<div class="products__dt">`+key+`:</div>
+						<div class="products__dd">`+ch[key]+`</div>
+					</div>
+					}
+				}
+				<div class="products__di">
+					<div class="products__dt">Цвет</div>
+					<div class="products__dd">
+						@@if (context.colors) {
+						<div class="color-pics">
+						@@for (var i = 0; i < colors.length; i++) {
+							<div class="color-pic" style="background-color: `+colors[i]+`;">`+colors[i]+`</div>
+						}
+						</div>
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="products__footer">
+			@@if (context.price) {
+			<div class="products__price">
+				<div class="cur"><strong class="val">@@price</strong> <span class="unit">@@priceUnit</span></div>
+			</div>
+			}
+			@@if (!context.price) {
+			<div class="products__price">
+				<div class="no">цену уточняйте</div>
+			</div>
+			}
+			<div class="products__basket">
+				<!--<a href="ajax-order.html" class="btn-to-basket btn-order-js" title="Добавить в корзину">-->
+				<a href="product-card.html#order-1" class="btn-to-basket" title="Добавить в корзину">
+					@@include("includes-json/svg/icon-basket-add.svg")
+					<span>В корзину</span>
+				</a>
+				<a href="#" class="btn-from-basket" title="Удалить из корзины">
+					@@include("includes-json/svg/icon-basket.svg")
+					<span>Удалить из корзины</span>
+				</a>
+			</div>
+		</div>
+	</div>
+
+</article>
